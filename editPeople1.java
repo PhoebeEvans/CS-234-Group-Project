@@ -117,6 +117,7 @@ public class editPeople1 {
                 }
                 
                 out.println(num + " - " + arrLine[1] + " - " + arrLine[2] + " - " + arrLine[3]);
+                num++;
                 
                 String iD;
                 iD = arrLine[1] + arrLine[2]; 
