@@ -1,0 +1,9 @@
+1 _   Amelia Anderson   _ 18 _ Adult _   07/07/2004   _   810 Front St., Leadville, CO 80641   _ 719-486-0749 _   2.006
+2 _ Harry Stuart _ 44 _ Adult_ 12/12/1977 _ 2846 C0-300, Leadville, CO 80461 _ 719-486-1234 _ 2.007
+3 _ Cassie Pomiselus _ 6 _ Child_ 04/04/2016 _ 5432 County Road 11B, Leadville, CO 80461 _ 719-486-2440 _ 2.008
+4 _ George Wort _ 57 _ Adult_ 04/16/1965 _ None _ 2452 _ 2.009
+5 _  Lillian Stuart  _ 18 _ Adult_  09/09/2004  _ 6357 CO Rd. 22, Fairplay, CO 80440 _  719-486-6385  _  2.0010
+6 _  Richard Stuart  _ 16 _ Child _  06/28/2006  _ 6357 Co Rd. 22, Fairplay, CO 80440 _  719-486-2345  _  2.0011
+7 _ Violet Pomiselus _ 13 _ Child _ 07/30/2009 _ 5432 County Road 11B, Leadville, CO 80461 _ 719-486-2440 _ 2.0012
+8 _ Archie Austin _ 16 _ Child _ 04/23/2006 _ Leadville _ 719-486-0748 _ 2.0013
+9 _ Penelope Stuart _ 43 _ Adult _ 04/17/1979 _ 2846 C0-300, Leadville, CO 80461 _ 719-486-8989 _ 2.0014
