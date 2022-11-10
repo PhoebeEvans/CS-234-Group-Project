@@ -12,9 +12,9 @@ public class Library {
         this.name = name;
     }
     
-   /* public void employees(){
-        Employees e1 = new Employees();
-    }*/
+   public void employees() throws FileNotFoundException{
+    EmployeeMenu.MainMenu();
+   }
     
     public void patrons() throws FileNotFoundException{
         Patrons p1 = new Patrons();
@@ -37,10 +37,9 @@ public class Library {
         m1.menu();
     }
     
-    /*public void programs(){
-        Programs p2 = new Programs();
-        p2.menu();
-    }*/
+    public void programs() throws FileNotFoundException{
+        ProgramMenu.MainMenu();
+    }
     
     public void menu() throws FileNotFoundException{
         
@@ -65,7 +64,7 @@ public class Library {
             switch (choose) {
                 
                 case 1:
-                    //employees();
+                    employees();
                     break;
                     
                 
@@ -86,7 +85,7 @@ public class Library {
                     break;
                     
                 case 6: 
-                    //programs();
+                    programs();
                     break;
                     
                 case 0:
