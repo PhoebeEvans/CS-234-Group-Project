@@ -1,3 +1,7 @@
+package com.mycompany.cs234project;
+
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -33,16 +37,40 @@ public class Materials {
     private String[] dateArr;
     private String[] countryArr;
     private String[] genreArr; 
+    private String[] idArr;
     private String[] tempNameArr;
     private String idFile;
     private int copies;
    
     /**
      *
-     * @param materialFile
-     * @param materialType
-     * @throws FileNotFoundException
+     * @param instruc
      */
+    public int intC(String instruc){
+        int response;
+        System.out.println(instruc);
+        
+        //get response from user
+        Scanner date = new Scanner(System.in);
+        response = date.nextInt();
+        
+        return response;
+    }
+    
+    public String stringC(String instruc){
+        String response;
+        System.out.println(instruc);
+        
+        //get response from user
+        Scanner reply = new Scanner(System.in);
+        response = reply.nextLine();
+        
+        //trim whitespace
+        //right whitespace trim
+        String temp = response.replaceAll("\\s+$", "");
+        response = temp;
+        return response;
+    }
     
     public void setmaterialFile(String materialFile){
         this.materialFile = materialFile;
@@ -53,8 +81,8 @@ public class Materials {
     }
     
     public void copies(String fileName) throws FileNotFoundException{
-        IntCreate material = new IntCreate();
-        copies = material.intC("How many copies do you have? ");
+       
+        copies = intC("How many copies do you have? ");
         
         //people.txt and temp.txt are opened
         File inputFile = new File(fileName);
@@ -64,7 +92,7 @@ public class Materials {
       
         rnum = 1;
         while(rnum <= copies){
-            out.println(fileName + "~ 1");
+            out.println(fileName + " ~ 0 ~ avalible");
             rnum++;
         }
         
@@ -72,55 +100,54 @@ public class Materials {
         in.close();
         out.close();
         
-        fileReplace2 replace2 = new fileReplace2();
-        replace2.fileReplace2( "temp.txt" , fileName);
+        Files replace = new Files( "temp.txt" , fileName);
+        replace.fileReplace();
         
     }
+    
     public void addMaterial()throws FileNotFoundException {
         //name
         
-        StringCreate material = new StringCreate();
-        IntCreate numb = new IntCreate();
            
         if(materialType == 1){
             //name
-            name = material.stringC("Please type the name of the book: ");
+            name = stringC("Please type the name of the book: ");
 
 
             //authors
-            authors = material.stringC("Please type the name of the author of the book: ");
+            authors = stringC("Please type the name of the author of the book: ");
 
 
             //Publication Date
 
-            publicationDate = numb.intC("Please type the year of publication of the book: ");
+            publicationDate = intC("Please type the year of publication of the book: ");
 
             //country of origin 
-            country = material.stringC("Please type country of origin of the book: ");
+            country = stringC("Please type country of origin of the book: ");
 
             //genre
-            genreInt = numb.intC("Please type 1 if the book is nonfiction and 2 if the book is fiction. ");
+            genreInt = intC("Please type 1 if the book is nonfiction and 2 if the book is fiction. \n");
         }
         
         
         if(materialType == 2){
             //name
-            name = material.stringC("Please type the name of the movie: ");
+            name = stringC("Please type the name of the movie: ");
 
 
             //authors
-            authors = material.stringC("Please type the name of the director of the movie: ");
+            authors = stringC("Please type the name of the director of the movie: ");
 
 
             //Publication Date
             
-            publicationDate = numb.intC("Please type the year of publication of the movie: ");
+            publicationDate = intC("Please type the year of publication of the movie: ");
 
             //country of origin 
-            country = material.stringC("Please type country of origin of the movie: ");
+            country = stringC("Please type country of origin of the movie: ");
 
             //genre
-            genreInt = numb.intC("Please type 1 if the movie is nonfiction and 2 if the movie is fiction. ");
+            genreInt = intC("Please type 1 if the movie is nonfiction and 2 if the movie is fiction. \n");
         }
         
         if(genreInt == 1){
@@ -163,8 +190,8 @@ public class Materials {
         iD = create.idCreate("000", idFile);
         
         
-        fileReplace2 replace = new fileReplace2();
-        replace.fileReplace2( "temp2.txt" , idFile);
+        Files replace = new Files( "temp2.txt" , idFile);
+        replace.fileReplace();
         
         
         //print new user's information to temp.txt 
@@ -174,8 +201,8 @@ public class Materials {
         in.close();
         out.close();
         
-        fileReplace2 replace2 = new fileReplace2();
-        replace2.fileReplace2( "temp.txt" , materialFile);
+        Files replace2 = new Files( "temp.txt" , materialFile);
+        replace2.fileReplace();
         
         //creates file for movie. 
         
@@ -187,8 +214,8 @@ public class Materials {
         mediaFile = tempString;
         
         //Creates file with fileCreate 
-        fileCreate createFile = new fileCreate();      
-        createFile.fileCreate(mediaFile);
+        Files createN = new Files(mediaFile);
+        createN.fileCreate();
         
         copies(mediaFile);
         
@@ -200,11 +227,11 @@ public class Materials {
         rnum = 1;
         
         if(materialType == 1){
-            System.out.println("Please number of the book to remove ");
+            System.out.println("Please number of the book to remove \n");
         }
         
         else if(materialType == 2){
-            System.out.println("Please number of the movies to remove ");
+            System.out.println("Please number of the movies to remove \n");
         }
         Scanner delete = new Scanner(System.in);
         int response = delete.nextInt();
@@ -218,7 +245,7 @@ public class Materials {
         while(in.hasNextLine()){
             if(response == in.nextInt()){
                 //out.printf("");
-                System.out.println(in.nextLine()+" is being removed. ");
+                System.out.println(in.nextLine()+" is being removed. \n");
             }
 
             else{
@@ -231,8 +258,9 @@ public class Materials {
         in.close();
         out.close();
         
-        fileReplace2 replace2 = new fileReplace2();
-        replace2.fileReplace2( "temp.txt" , materialFile);
+        Files replace = new Files( "temp.txt" , materialFile);
+        replace.fileReplace();
+        
         
 
     }
@@ -240,11 +268,11 @@ public class Materials {
     public void editMaterial() throws FileNotFoundException{
         //name
         if(materialType == 1){
-            System.out.println("Please type the number of the book you want to edit ");
+            System.out.println("Please type the number of the book you want to edit \n");
         }
         
         if(materialType == 2){
-            System.out.println("Please type the number of the movie you want to edit ");
+            System.out.println("Please type the number of the movie you want to edit n");
         }
         Scanner numb = new Scanner(System.in);
         int response = numb.nextInt();
@@ -271,7 +299,7 @@ public class Materials {
                 oldFilename = rePlace2;
                 String temp3 = oldFilename +".txt";
                 oldFilename = temp3; 
-               
+                System.out.println(oldFilename);
                 
                 
                 int loop2 = 1;
@@ -285,6 +313,8 @@ public class Materials {
                         System.out.println("Type 2 to edit the name of the author of the book. ");
                         System.out.println("Type 3 to edit the date of the book. ");
                         System.out.println("Type 4 to edit the country of the book. ");
+                        System.out.println("Type 5 to edit the number of copies of the book. ");
+                        System.out.println("Type 0 to quit. \n");
                     }
                     
                     if(materialType == 2){
@@ -292,12 +322,13 @@ public class Materials {
                         System.out.println("Type 2 to edit the name of the director of the movie. ");
                         System.out.println("Type 3 to edit the date of the movie. ");
                         System.out.println("Type 4 to edit the country of the movie. ");
+                        System.out.println("Type 5 to edit the number of copies of the movie. ");
+                        System.out.println("Type 0 to quit. \n");
                     }
                     //scan
                     Scanner pick = new Scanner(System.in);
                     int pick2 = pick.nextInt();
                 
-                    StringCreate material = new StringCreate();
                     if(pick2 == 1){
                         System.out.println(" Name Change ");
                         System.out.println("Current Name is: " + arrLine[1]);
@@ -305,14 +336,13 @@ public class Materials {
                         
         
                         //name
-                        arrLine[1] = " " + material.stringC("Please type the name: ") + " ";
+                        arrLine[1] = " " + stringC("Please type the name: ") + " ";
                         System.out.println(arrLine[1]);
                         
                         
                         loop2 = 0;
                     }
 
-                    
                     
                     if(pick2 == 2){
                         
@@ -327,7 +357,7 @@ public class Materials {
                         }
                         
 
-                        arrLine[2] = material.stringC("Please type the new name: ");
+                        arrLine[2] = stringC("Please type the new name: ");
                         System.out.println(arrLine[2]);
                         
                         
@@ -335,13 +365,12 @@ public class Materials {
                     }
                     
                     
-                    
                     if(pick2 == 3){
                         System.out.println(" Date Change ");
                         System.out.println("Current Date is: " + arrLine[3]);
 
                         //int string conflict maybe??
-                        arrLine[3] = material.stringC("Please type the date: ");
+                        arrLine[3] = stringC("Please type the date: ");
                         System.out.println(arrLine[3]);
                         
                         loop2 = 0;
@@ -351,14 +380,26 @@ public class Materials {
                         System.out.println(" Country of Origin Change ");
                         System.out.println("Current Country of Origin is: " + arrLine[4]);
 
-                        arrLine[4] = material.stringC("Please type the country: ");
+                        arrLine[4] = stringC("Please type the country: ");
                         System.out.println(arrLine[4]);
                         
                         
                         loop2 = 0;
                     }
-
                     
+                    if(pick2 == 5){
+                        System.out.println(" Number of Copies Change ");
+                        
+                        copies(oldFilename);
+                        
+                        loop2 = 0;
+                    }
+                    
+                    if(pick2 == 0){
+                        loop2 = 0;
+                    }
+                    
+  
                 }
                 
                 out.println(rnum + " ~" + arrLine[1] + "~" + arrLine[2] + "~" + arrLine[3] + "~" + arrLine[4] + "~" + arrLine[5]+ "~" + arrLine[6]);
@@ -372,13 +413,13 @@ public class Materials {
                 String temp = iD + ".txt";
                 iD = temp;
 
-                //Creates file with fileCreate 
-                fileCreate createFile = new fileCreate();      
-                createFile.fileCreate(iD);
-                
-                fileReplace2 replace2 = new fileReplace2();
-                replace2.fileReplace2( oldFilename ,iD);
-                    
+                //Creates file with fileCreate
+                Files editF = new Files(oldFilename, iD);
+                if(oldFilename == null ? iD != null : !oldFilename.equals(iD)){
+                    editF.fileCreate();
+
+                    editF.fileReplace();
+                }    
             }
 
             else{
@@ -387,16 +428,13 @@ public class Materials {
                 rnum ++;
             }
         }
-        
-        
-        
+      
         in.close();
         out.close();
         
-        fileReplace2 replace2 = new fileReplace2();
-        replace2.fileReplace2( "temp.txt" , materialFile);
-        
-
+        Files replace = new Files("temp.txt",materialFile);
+        replace.fileReplace();
+ 
     }
     
     public void searchMaterials() throws FileNotFoundException{
@@ -415,6 +453,7 @@ public class Materials {
         dateArr = new String[value];
         countryArr = new String[value];
         genreArr = new String[value]; 
+        idArr = new String[value];
         tempNameArr = new String[1];
   
         while(in.hasNextLine()){
@@ -422,13 +461,14 @@ public class Materials {
             
             
             String[] arrLine = lineChange.split("~");
-            //System.out.println(arrLine[0]);
+            //System.out.println(arrLine);
             
             nameArr[num] = arrLine[1];
             authorArr[num] = arrLine[2];
             dateArr[num] = arrLine[3];
             countryArr[num] = arrLine[4];
             genreArr[num] = arrLine[5];
+            idArr[num] = arrLine[6];
             
             //System.out.println(name[num]);
             //System.out.println(age[num]);
@@ -445,6 +485,7 @@ public class Materials {
                 System.out.println("Please tpye 3 to search dates. ");
                 System.out.println("Please type 4 to search for countries. ");
                 System.out.println("Please type 5 to search genre: ");
+                System.out.println("Type 0 to quit. \n");
             }
             
             if(materialType == 2){
@@ -454,13 +495,14 @@ public class Materials {
                 System.out.println("Please tpye 3 to search dates of publication. ");
                 System.out.println("Please type 4 to search for countries of origin. ");
                 System.out.println("Please type 5 to search genre: ");
+                System.out.println("Type 0 to quit. \n");
             }
             
 
             Scanner number = new Scanner(System.in);
             int response = number.nextInt();
             
-            
+            PrintWriter loans = new PrintWriter("loansM.txt");
             //name searcher
             //country searcher
             
@@ -483,7 +525,7 @@ public class Materials {
 
                     //System.out.println("in " + resp2);
                     
-                    
+                    int numb = 1;
                     int count = 0;
 
                     while(count < num){
@@ -506,8 +548,9 @@ public class Materials {
                             //System.out.println("arr " + dNew);
 
                             if(resp1.equals(dNew)){
-                                System.out.println(nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count]);
-                                
+                                System.out.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                loans.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                numb++;
                             }
                             
                         
@@ -546,7 +589,7 @@ public class Materials {
 
                     //System.out.println("in " + resp2);
                     
-                    
+                    int numb = 1;
                     int count = 0;
 
                     while(count < num){
@@ -569,8 +612,9 @@ public class Materials {
                             //System.out.println("arr " + dNew);
 
                             if(resp2.equals(dNew)){
-                                System.out.println(nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count]);
-                                
+                                System.out.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                loans.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                numb++;
                             }
                             
                         
@@ -589,15 +633,12 @@ public class Materials {
 
                 Scanner age2 = new Scanner(System.in);
                 int ageInt = age2.nextInt();
+                int numb = 1;
+                int count = 0;
                 
-                int counter = 0;
-                
-                
-
-                
-                while(counter  < num){
+                while(count  < num){
                     
-                    tempNameArr[0] = dateArr[counter];
+                    tempNameArr[0] = dateArr[count];
 
                     String dateNew = Arrays.toString(tempNameArr);
                     String temp;
@@ -607,9 +648,11 @@ public class Materials {
                     int intAge = Integer.parseInt(dateNew);
 
                     if(ageInt == intAge){
-                        System.out.println(nameArr[counter] + " ~ " + authorArr[counter] + " ~ " + dateArr[counter] + " ~ " + countryArr[counter] );
+                        System.out.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                        loans.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                        numb++;
                     }
-                    counter++;
+                    count++;
 
                 }
                 
@@ -637,7 +680,7 @@ public class Materials {
 
                     //System.out.println("in " + resp2);
                     
-                    
+                    int numb = 1;
                     int count = 0;
 
                     while(count < num){
@@ -660,8 +703,9 @@ public class Materials {
                             //System.out.println("arr " + dNew);
 
                             if(resp4.equals(cNew)){
-                                System.out.println(nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count]);
-                                
+                                System.out.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                loans.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                numb++;
                             }
                             
                         
@@ -692,7 +736,7 @@ public class Materials {
 
                     //System.out.println("in " + resp2);
                     
-                    
+                    int numb = 1;
                     int count = 0;
 
                     while(count < num){
@@ -715,8 +759,9 @@ public class Materials {
                             //System.out.println("arr " + dNew);
 
                             if(resp5.equals(gNew)){
-                                System.out.println(nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count]);
-                                
+                                System.out.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                loans.println(numb + " ~ " + nameArr[count] + " ~ " + authorArr[count] + " ~ " + dateArr[count] + " ~ " + countryArr[count] + " ~ " + genreArr[count] + " ~ " + idArr[count]);
+                                numb++;
                             }
                             
                         
@@ -724,7 +769,12 @@ public class Materials {
                         count++;
                     }
                 }
-            } 
+            }
+            
+            if(response == 0){
+                System.out.println("Quiting material searcher. \n");
+            }
+            
             if(materialType == 2){
             System.out.println("Type 1 to continue searching, type 0 to return to the movies menu. ");
             }
@@ -735,20 +785,21 @@ public class Materials {
             
             Scanner  cont = new Scanner(System.in);
             cnum = cont.nextInt();
-            
+            loans.close();
         }
         
         
         
      in.close();
      out.close();
+     
     }
     
     public void printMaterials() throws FileNotFoundException{
         
-        ViewFile viewOne = new ViewFile();
+        Files view = new Files(materialFile);
         
-        viewOne.setFile(materialFile);
+       view.viewFile();
     }
     
     public void menuOptions(){
@@ -792,12 +843,15 @@ public class Materials {
                 case 5:
                     searchMaterials();
                     break;
-                    
+                
+                case 0: 
+                    System.out.println("Quiting materials menu. \n");
+                    cont = 3;
                 //if invalid option is picked print that
                 default:
                     System.out.println("You selected " + pick);
                     System.out.println("Invalid option \n");
-                    cont = 3;
+                    
                     break;
             }
 
