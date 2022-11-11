@@ -21,7 +21,7 @@ public class Library {
         p1.menu();
     }
     
-    public void loans(){
+    public void loans() throws FileNotFoundException{
         Loans L1 = new Loans();
         L1.menu();
     }
