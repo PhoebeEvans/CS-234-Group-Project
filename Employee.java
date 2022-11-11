@@ -1,4 +1,7 @@
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable{
+    //variables for employees
     public int hoursWorked;
     public String employeeIdNumber;
     public double salary; 
@@ -7,8 +10,8 @@ public class Employee {
     public int dateOfBirth;
     public String address; 
     public String phoneNumber;
-    
-    public Employee(int _hoursWorked, String _employeeIdNumber, double _salary, String _position, String _name, int _dateOfBirth, String _address, String _phoneNumber){
+    //constructor
+    public Employee (int _hoursWorked, String _employeeIdNumber, double _salary, String _position, String _name, int _dateOfBirth, String _address, String _phoneNumber){
         hoursWorked = _hoursWorked;
         employeeIdNumber = _employeeIdNumber;
         salary = _salary;
@@ -25,9 +28,9 @@ public class Employee {
     @Override
     public String toString(){
         System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        String output = "{" + employeeIdNumber + ", " + salary + ", " + position 
+        String output = "{" + hoursWorked + "," + employeeIdNumber + ", " + salary + ", " + position 
                 + ", " + name + ", " + dateOfBirth + ", " + address + ", " 
-                + "}\n";
+                + phoneNumber +  "}\n";
         
         return output;
     }

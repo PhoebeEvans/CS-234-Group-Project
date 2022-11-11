@@ -1,6 +1,6 @@
-
+import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Collection;
 /**
  *
  * @author jacqu
@@ -25,6 +25,7 @@ public class EmployeeDataStore {
     //if index was found, it will remove the object at that index
     public static void removeEmployee(String employeeIdNumber){
         int index = -1;
+        //look for employee
         for (int i = 0; i < Employees.size(); i++ ){
             if (Employees.get(i).employeeIdNumber.equals(employeeIdNumber)){
                 index = i;
@@ -32,10 +33,12 @@ public class EmployeeDataStore {
                 
             }
         }
+        //remove employee at index by ID
          if(index != -1){
             Employees.remove(index);
         }
     }
+    //remove employee by name
     public static void removeEmployeebyName(String name){
         int index = -1;
             for (int i = 0; i < Employees.size(); i++ ){
@@ -60,6 +63,7 @@ public class EmployeeDataStore {
         return null;
         
     }
+    //search employee by name and print employee 
       public static Employee searchEmployeeByname(String name){
         for (Employee employee : Employees){
             if (employee.name.equals(name)){
@@ -69,6 +73,7 @@ public class EmployeeDataStore {
         return null;
         
     }
+    //search employee by position and print employee
         public static Employee SearchEmployeeByPosition(String position){
         for (Employee employee : Employees){
             if (employee.position.equals(position)){
@@ -84,5 +89,44 @@ public class EmployeeDataStore {
     //view employees method 
     public static void viewEmployees(){
         System.out.println(Employees);
+    }
+    public static void getLocalEmployeeData(){
+        File employeeSave = new File("Employees.txt");
+        if(employeeSave.exists()){
+        try{
+            //if file exists
+            FileInputStream readData = new FileInputStream("Employees.txt");
+            ObjectInputStream readStream = new ObjectInputStream(readData);
+            ArrayList Employees = (ArrayList<Employee>) readStream.readObject();
+            readStream.close();
+            
+            EmployeeDataStore.init();
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+            System.out.println("There was a problem loading saved data.");
+            }
+        }
+        else{
+                EmployeeDataStore.init();
+                }
+         
+        
+    }
+    //save data
+    public static void setLocalEmployeeData(){
+        try{
+            FileOutputStream writeData = new FileOutputStream("Employees.txt");
+        ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+
+        writeStream.writeObject(EmployeeDataStore.Employees);
+        writeStream.flush();
+        writeStream.close();
+    }
+        catch (IOException e){
+            e.printStackTrace();
+            System.out.println("There was a problem saving program data and changes were not recorded.");
+        }
+
     }
 }

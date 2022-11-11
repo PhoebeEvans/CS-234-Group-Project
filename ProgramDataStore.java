@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 
 
@@ -51,11 +52,13 @@ public class ProgramDataStore {
         for (Program program : Programs){
             if (program.eventName.equals(eventNameNew)){
                 return program;
+                
             }
         }
         return null;
         
     }
+    //search Program by data
       public static Program searchProgrambydate(String dateOfEvent){
         for (Program program : Programs){
             if (program.dateOfEvent.equals(dateOfEvent)){
@@ -66,9 +69,48 @@ public class ProgramDataStore {
         
     }
         
-
+    //print Programs
     public static void viewPrograms(){
         System.out.println(Programs);
+    }
+    //load data 
+    public static void getLocalProgramData(){
+        //create file if it doesnt exist
+        File programSave = new File("Programs.txt");
+        if(programSave.exists()){
+        try{
+            //read data from txt file
+            FileInputStream readData = new FileInputStream("Programs.txt");
+            ObjectInputStream readStream = new ObjectInputStream(readData);
+            ArrayList Programs = (ArrayList<Program>) readStream.readObject();
+            readStream.close();
+            
+            //initialize dummy data
+            ProgramDataStore.init();
+        }
+        catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+            System.out.println("There was a problem loading saved data.");
+            }
+        }
+        else{
+                ProgramDataStore.init();
+                }
+    }
+    //save data on exit
+    public static void setLocalProgramData(){
+        try{
+            FileOutputStream writeData = new FileOutputStream("Programs.txt");
+        ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+
+        writeStream.writeObject(ProgramDataStore.Programs);
+        writeStream.flush();
+        writeStream.close();
+    }
+        catch (IOException e){
+            e.printStackTrace();
+            System.out.println("There was a problem saving program data and changes were not recorded.");
+        }
     }
 }
 

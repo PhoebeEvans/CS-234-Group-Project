@@ -10,13 +10,14 @@
      * @author jacqu
      */
     public class Program implements Serializable {
+        //variables of Programs
     
         String speakerProgram;
         String eventName;
         String dateOfEvent;
         String location;
         public ArrayList<String> Patrons = new ArrayList<>();
-    
+    //constructor
         public Program(String _speakerProgram, String _eventName, String _dateOfEvent, String _location, ArrayList _Patrons) {
             speakerProgram = _speakerProgram;
             eventName = _eventName;
@@ -25,20 +26,21 @@
             Patrons = _Patrons;
     
         }
-      
+      //turn object into String and return string 
         @Override
         public String toString() {
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
             String output = "{" + speakerProgram + ", " + eventName + ", " + dateOfEvent
-                    + ", " + location + "}\n";
+                    + ", " + location  + ", " + Patrons + "}\n";
             return output;
         }
-    
+        
+        //add Patrons to arraylist
         public void addPatron(String patronName) {
     
             Patrons.add(patronName);
         }
-    
+        //remove Patrons from arraylist
         public void removePatron(String removeName) {
     
             int index = Patrons.indexOf(removeName);
