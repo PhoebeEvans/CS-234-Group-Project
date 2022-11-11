@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
+package com.mycompany.cs234project;
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  *
@@ -16,6 +17,17 @@ public class Library {
     
     public Library(String name){
         this.name = name;
+    }
+    
+    public int intC(String instruc){
+        int response;
+        System.out.println(instruc);
+        
+        //get response from user
+        Scanner date = new Scanner(System.in);
+        response = date.nextInt();
+        
+        return response;
     }
     
    public void employees(){
@@ -64,8 +76,8 @@ public class Library {
             System.out.println("Please choose 6 to access the programs menu: ");
             System.out.println("To quit the system choose 0: ");
 
-            IntCreate material = new IntCreate();
-            choose = material.intC("What menu do you want to access? ");
+            
+            choose = intC("What menu do you want to access? ");
             
             
             //switch to pick users choice

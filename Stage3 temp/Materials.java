@@ -1,4 +1,4 @@
-
+package com.mycompany.cs234project;
 
 
 
@@ -81,8 +81,8 @@ public class Materials {
     }
     
     public void copies(String fileName) throws FileNotFoundException{
-        IntCreate material = new IntCreate();
-        copies = material.intC("How many copies do you have? ");
+       
+        copies = intC("How many copies do you have? ");
         
         //people.txt and temp.txt are opened
         File inputFile = new File(fileName);
@@ -108,48 +108,46 @@ public class Materials {
     public void addMaterial()throws FileNotFoundException {
         //name
         
-        StringCreate material = new StringCreate();
-        IntCreate numb = new IntCreate();
            
         if(materialType == 1){
             //name
-            name = material.stringC("Please type the name of the book: ");
+            name = stringC("Please type the name of the book: ");
 
 
             //authors
-            authors = material.stringC("Please type the name of the author of the book: ");
+            authors = stringC("Please type the name of the author of the book: ");
 
 
             //Publication Date
 
-            publicationDate = numb.intC("Please type the year of publication of the book: ");
+            publicationDate = intC("Please type the year of publication of the book: ");
 
             //country of origin 
-            country = material.stringC("Please type country of origin of the book: ");
+            country = stringC("Please type country of origin of the book: ");
 
             //genre
-            genreInt = numb.intC("Please type 1 if the book is nonfiction and 2 if the book is fiction. \n");
+            genreInt = intC("Please type 1 if the book is nonfiction and 2 if the book is fiction. \n");
         }
         
         
         if(materialType == 2){
             //name
-            name = material.stringC("Please type the name of the movie: ");
+            name = stringC("Please type the name of the movie: ");
 
 
             //authors
-            authors = material.stringC("Please type the name of the director of the movie: ");
+            authors = stringC("Please type the name of the director of the movie: ");
 
 
             //Publication Date
             
-            publicationDate = numb.intC("Please type the year of publication of the movie: ");
+            publicationDate = intC("Please type the year of publication of the movie: ");
 
             //country of origin 
-            country = material.stringC("Please type country of origin of the movie: ");
+            country = stringC("Please type country of origin of the movie: ");
 
             //genre
-            genreInt = numb.intC("Please type 1 if the movie is nonfiction and 2 if the movie is fiction. \n");
+            genreInt = intC("Please type 1 if the movie is nonfiction and 2 if the movie is fiction. \n");
         }
         
         if(genreInt == 1){
@@ -331,7 +329,6 @@ public class Materials {
                     Scanner pick = new Scanner(System.in);
                     int pick2 = pick.nextInt();
                 
-                    StringCreate material = new StringCreate();
                     if(pick2 == 1){
                         System.out.println(" Name Change ");
                         System.out.println("Current Name is: " + arrLine[1]);
@@ -339,7 +336,7 @@ public class Materials {
                         
         
                         //name
-                        arrLine[1] = " " + material.stringC("Please type the name: ") + " ";
+                        arrLine[1] = " " + stringC("Please type the name: ") + " ";
                         System.out.println(arrLine[1]);
                         
                         
@@ -360,7 +357,7 @@ public class Materials {
                         }
                         
 
-                        arrLine[2] = material.stringC("Please type the new name: ");
+                        arrLine[2] = stringC("Please type the new name: ");
                         System.out.println(arrLine[2]);
                         
                         
@@ -373,7 +370,7 @@ public class Materials {
                         System.out.println("Current Date is: " + arrLine[3]);
 
                         //int string conflict maybe??
-                        arrLine[3] = material.stringC("Please type the date: ");
+                        arrLine[3] = stringC("Please type the date: ");
                         System.out.println(arrLine[3]);
                         
                         loop2 = 0;
@@ -383,7 +380,7 @@ public class Materials {
                         System.out.println(" Country of Origin Change ");
                         System.out.println("Current Country of Origin is: " + arrLine[4]);
 
-                        arrLine[4] = material.stringC("Please type the country: ");
+                        arrLine[4] = stringC("Please type the country: ");
                         System.out.println(arrLine[4]);
                         
                         
