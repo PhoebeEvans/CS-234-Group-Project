@@ -12,25 +12,13 @@ import java.io.FileNotFoundException;
 public class ApplicationStart {
 
     public static void main(String[] args) throws FileNotFoundException {
-        //Books Jville = new Books();
-
-        //Jville.menu();
+        
         
         Library pbville = new Library("Leadville");
         
         pbville.menu();
-        
-        //Patrons J = new Patrons();
-        //J.menu();
-        
-        
-        /*Age n = new Age("11/23/2000");
-        n.printDateC();
-        n.printDateB();
-        System.out.println(n.findAge());*/
+       
       
     }
-    
-    
- 
+   
 }
