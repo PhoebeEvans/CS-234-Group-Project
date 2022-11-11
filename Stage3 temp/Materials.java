@@ -1,5 +1,3 @@
-package com.mycompany.cs234project;
-
 
 
 import java.io.File;
