@@ -21,10 +21,10 @@ public class Library {
         p1.menu();
     }
     
-    /*public void loans(){
-        Loans L1 = new Patrons();
+    public void loans(){
+        Loans L1 = new Loans();
         L1.menu();
-    }*/
+    }
     
     
     public void books() throws FileNotFoundException{
@@ -74,7 +74,7 @@ public class Library {
                     
                 
                 case 3:
-                    //loans();
+                    loans();
                     break;
                 case 4:
                     books();
