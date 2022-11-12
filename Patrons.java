@@ -1,6 +1,4 @@
 
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -644,7 +642,8 @@ public class Patrons {
             System.out.println("Please type 2 to add a patron: ");
             System.out.println("Please type 3 to remove a patron: ");
             System.out.println("Please type 4 to edit a patron: ");
-            System.out.println("Please type 5 to search patrons: \n");
+            System.out.println("Please type 5 to search patrons: ");
+            System.out.println("Please type 0 to quit patrons menu: \n");
             
             pick = choice.nextInt();
             

@@ -1,4 +1,11 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  *
@@ -12,16 +19,28 @@ public class Library {
         this.name = name;
     }
     
-   public void employees() throws FileNotFoundException{
-    EmployeeMenu.MainMenu();
-   }
+    public int intC(String instruc){
+        int response;
+        System.out.println(instruc);
+        
+        //get response from user
+        Scanner date = new Scanner(System.in);
+        response = date.nextInt();
+        
+        return response;
+    }
+    
+   public void employees(){
+        EmployeeMenu e1 = new EmployeeMenu();
+        e1.MainMenu();
+    }
     
     public void patrons() throws FileNotFoundException{
         Patrons p1 = new Patrons();
         p1.menu();
     }
     
-    public void loans(){
+    public void loans() throws FileNotFoundException{
         Loans L1 = new Loans();
         L1.menu();
     }
@@ -37,8 +56,9 @@ public class Library {
         m1.menu();
     }
     
-    public void programs() throws FileNotFoundException{
-        ProgramMenu.MainMenu();
+    public void programs(){
+        ProgramMenu p2 = new ProgramMenu();
+        p2.MainMenu();
     }
     
     public void menu() throws FileNotFoundException{
@@ -56,8 +76,8 @@ public class Library {
             System.out.println("Please choose 6 to access the programs menu: ");
             System.out.println("To quit the system choose 0: ");
 
-            IntCreate material = new IntCreate();
-            choose = material.intC("What menu do you want to access? ");
+            
+            choose = intC("What menu do you want to access? ");
             
             
             //switch to pick users choice

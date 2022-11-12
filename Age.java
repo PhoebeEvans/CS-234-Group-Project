@@ -1,15 +1,17 @@
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
  * @author phoeb
  */
-public class Age {
+public class Age{
 
     private int dateC;
     private int monthC;
@@ -27,15 +29,16 @@ public class Age {
     private int overDue;
 
     public Age() {
-        Date currentDate = new Date();
-        dateC = currentDate.getDate();
-        monthC = currentDate.getMonth();
-        yearC = currentDate.getYear();
+        Calendar cal = Calendar.getInstance();
+        
+        dateC = cal.get(Calendar.DAY_OF_MONTH);
+        monthC = cal.get(Calendar.MONTH);
+        yearC = cal.get(Calendar.YEAR);
 
     }
 
     public String getcurrentDate() {
-        currentDate = (monthC + 1) + "/" + dateC + "/" + (yearC + 1900);
+        currentDate = (monthC + 1) + "/" + dateC + "/" + (yearC);
         return currentDate;
     }
 
@@ -87,28 +90,35 @@ public class Age {
             }
         }
 
-        returnDate = (monthR + 1) + "/" + dateR + "/" + (yearR + 1900);
+        returnDate = (monthR + 1) + "/" + dateR + "/" + (yearR);
         return returnDate;
     }
 
     public Age(String dob) {
-        Date currentDate = new Date();
-        dateC = currentDate.getDate();
-        monthC = currentDate.getMonth();
-        yearC = currentDate.getYear();
-        Date dateofBirth = new Date(dob);
-        dateB = dateofBirth.getDate();
-        monthB = dateofBirth.getMonth();
-        yearB = dateofBirth.getYear();
+        Calendar cal = Calendar.getInstance();
+        
+        dateC = cal.get(Calendar.DAY_OF_MONTH);
+        monthC = cal.get(Calendar.MONTH);
+        yearC = cal.get(Calendar.YEAR);
+        
+        String[] dueD = new String[3];
+        dueD = dob.split("/");
 
+        String monthtemp = dueD[0].replaceAll("[^0-9]", "");
+        String datetemp = dueD[1].replaceAll("[^0-9]", "");
+        String yeartemp = dueD[2].replaceAll("[^0-9]", "");
+        
+        monthB = Integer.parseInt(monthtemp)-1;
+        dateB = Integer.parseInt(datetemp);
+        yearB = Integer.parseInt(yeartemp);
     }
 
     public void printDateC() {
-        System.out.println((monthC + 1) + "/" + dateC + "/" + (yearC + 1900));
+        System.out.println((monthC + 1) + "/" + dateC + "/" + (yearC));
     }
 
     public void printDateB() {
-        System.out.println((monthB + 1) + "/" + dateB + "/" + (yearB + 1900));
+        System.out.println((monthB + 1) + "/" + dateB + "/" + (yearB));
     }
 
     public int findAge() {
@@ -152,7 +162,7 @@ public class Age {
         temp = yearD.replaceAll("[^0-9]", "");
         yearD = temp;
         int yR = Integer.parseInt(yearD);
-        yR = yR-1900;
+        yR = yR;
         
         
         if (yR == yearC) {
@@ -194,3 +204,4 @@ public class Age {
     }
 
 }
+

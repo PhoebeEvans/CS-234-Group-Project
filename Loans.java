@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -170,7 +169,7 @@ public class Loans {
                     String nextline = inMedia.nextLine();
                     arrLine2 = nextline.split("~");
                     String person = arrLine2[2];
-                    String [] spliter = person.split(" * ");
+                    String [] spliter = person.split("#");
                     String name = spliter[0];
                     name = name.toLowerCase();
                      
@@ -180,7 +179,7 @@ public class Loans {
                     
                     if(name == null ? patronName == null : name.equals(patronName)){
                         
-                        arrLine2[2] = arrLine2[2] + " * " + "overdue by " + due + " days. ";
+                        arrLine2[2] = arrLine2[2] + "#" + "overdue by " + due + " days. ";
                         System.out.println(materialName + " was loaned to " + patronname + " on " + outDate + " it is due " + inDate);
                         loan = 1;
                         
@@ -211,7 +210,7 @@ public class Loans {
                     
                     if(name == null ? materialname == null : name.equals(materialname)){
                         
-                        arrLine2[5] = arrLine[5] + " * " + "overdue by " + due + " days. ";
+                        arrLine2[5] = arrLine[5] + "#" + "overdue by " + due + " days. ";
                         
                         loan = 1;
                         
@@ -388,7 +387,7 @@ public class Loans {
                 //if the copy is avalible
                 if(aval == 0){
                     //updates info
-                    arrLine2[2] = " " + patronname + " * " + patronDOB + " * " + patronId+ " * " + outDate+ " * " + inDate;
+                    arrLine2[2] = " " + patronname + " # " + patronDOB + " # " + patronId+ " # " + outDate+ " # " + inDate;
                     arrLine2[1] = "1";
                     
                     //prints loan
@@ -520,7 +519,7 @@ public class Loans {
                     String nextline = inMedia.nextLine();
                     arrLine2 = nextline.split("~");
                     String person = arrLine2[2];
-                    String [] spliter = person.split(" * ");
+                    String [] spliter = person.split("#");
                     String name = spliter[0];
                     name = name.toLowerCase();
                      
@@ -660,7 +659,8 @@ public class Loans {
                     patronArr[response] = " " + patronname + " ";
                     dobArr[response] = " " + patronDOB + " ";
                     patronidArr[response] = " " + patronId + " ";
-
+                    cont = 2;
+                                                                          
                     break;
 
 
@@ -671,6 +671,7 @@ public class Loans {
                     materialArr[response] = " " + materialName + " ";
                     mDateArr[response] = " " + materialDate + " ";
                     materialIdArr[response] = " " + materialId + " ";
+                    cont = 2;
                     break;
 
 
@@ -679,17 +680,22 @@ public class Loans {
                     System.out.println("You are editing the due date. ");
                     inDate = stringC("Please type the due date in MM/DD/YYYY format. \n");
                     indateArr[response] = " " + inDate + " ";
-
+                    
+                    cont = 2;
                     break;
 
                 case 4:
                     System.out.println("You are returning the material. \n");
                     dates();
                     indateArr[response] = "returned " + outDate + " ";
+                    
+                    cont = 2;
+                    break;
 
                 case 0: 
                     System.out.println("You are exiting the loans editing menu. \n");
                     cont = 3;
+                    break;
                 //if invalid option is picked print that
                 default:
                     System.out.println("You selected " + pick);
@@ -716,20 +722,13 @@ public class Loans {
         String materialname = materialArr[response].toLowerCase();
         materialname = materialname.replaceAll("[^a-z]", "");
         
-        //loans are printed to temp file
-        while(count < rnum){
-            out.println(materialArr[count] + "~" + mDateArr[count] + "~" + materialIdArr[count] + "~" + patronArr[count] + "~" + dobArr[count] + "~" + patronidArr[count] + "~" + 
-                        outdateArr[count] + "~" + indateArr[count] + "~" + employeeArr[count] + "~" + employeeidArr[count]);
-            count++;
-        }
         
-        in.close();
-        out.close();
-        Files Loans = new Files("temp.txt", "Loans.txt");
-        Loans.fileReplace();
+        
         //media edit
         //mediaFile update
         if(mediaFile == null ? oldmediaFile == null : mediaFile.equals(oldmediaFile)){
+            loan = 1;
+            
             File inputMediaFile = new File(mediaFile);
             Scanner inMedia = new Scanner(inputMediaFile);
             PrintWriter outMedia = new PrintWriter("temp.txt");
@@ -738,7 +737,7 @@ public class Loans {
                 String nextline = inMedia.nextLine();
                 arrLine2 = nextline.split("~");
                 String person = arrLine2[2];
-                String [] spliter = person.split(" * ");
+                String [] spliter = person.split("#");
                 String name = spliter[0];
                 name = person.toLowerCase();
 
@@ -746,7 +745,7 @@ public class Loans {
                 name = name.replaceAll("[^a-z]", "");
                 
                 if(name == null ? patronName == null : name.equals(patronName)){
-                    arrLine2[2] = " " + patronArr[response] + " * " + dobArr[response] + " * " + patronidArr[response]+ " * " + outdateArr[response] + " * " + indateArr[response];
+                    arrLine2[2] = " " + patronArr[response] + "#" + dobArr[response] + "#" + patronidArr[response]+ "#" + outdateArr[response] + "#" + indateArr[response];
                     if(pick == 4){
                         arrLine2[2] = "avalible";
                         arrLine2[1] = " 0 ";
@@ -766,125 +765,181 @@ public class Loans {
             Scanner inMedia = new Scanner(inputMediaFile);
             PrintWriter outMedia = new PrintWriter("temp.txt");
             
+            
+            loan = 0;
             while(inMedia.hasNextLine()){
-                outMedia.println(inMedia.nextLine());
+                //next line = next line in mediaFile
+                String nextline = inMedia.nextLine();
+
+                //splits nextline into an array
+                arrLine2 = nextline.split("~");
+
+                //the avalibility part is arrLine2[1]
+                String avalibility = arrLine2[1];
+
+                //non letters and spaces remove
+                avalibility = avalibility.replaceAll("[^0-9]", "");
+
+                //converts to an Integer
+                int aval = Integer.parseInt(avalibility);
+
+                //if the material has not been loaned yet.
+                if(loan == 0){
+                    //if the copy is avalible
+                    if(aval == 0){
+                        //updates info
+                        arrLine2[1] = " 1 ";
+                        arrLine2[2] = " " + patronArr[response] + "#" + dobArr[response] + "#" + patronidArr[response]+ "#" + outdateArr[response] + "#" + indateArr[response];
+
+                        //prints loan
+                        System.out.println(materialName + " was loaned to " + patronname + " on " + outDate + " it is due " + inDate);
+
+                        //changes loan status so that all copies are not loaned. 
+                        loan = 1;
+                    }
+
+                }
+            
+                //line is printed
+                outMedia.println(mediaFile + "~" + arrLine2[1] + " ~" + arrLine2[2]);
             }
-            arrLine2 = new String[3];
-            arrLine2[1] = " 1 ";
-            arrLine2[2] = " " + patronArr[response] + "*" + dobArr[response] + "*" + patronidArr[response]+ "*" + outdateArr[response] + "*" + indateArr[response];
-            outMedia.println(mediaFile + "~" + arrLine2[1] + "~" + arrLine2[2]);
+            
             inMedia.close();
             outMedia.close();
             Files loans = new Files("temp.txt", mediaFile);
             loans.fileReplace();
-            
-            
-            File inputOldMediaFile = new File(oldmediaFile);
-            Scanner inOldMedia = new Scanner(inputOldMediaFile);
-            PrintWriter outOldMedia = new PrintWriter("temp.txt");
-            while(inOldMedia.hasNextLine()){
-                String nextline = inOldMedia.nextLine();
-                arrLine2 = nextline.split("~");
-                String person = arrLine2[2];
-                String [] spliter = person.split(" * ");
-                String name = spliter[0];
-                name = name.toLowerCase();
-
-
-                name = name.replaceAll("[^a-z0-9]", "");
-
-
-                if(name == null ? patronName == null : name.equals(patronName)){
-                   
-                }
-                else{
-                    outOldMedia.println(mediaFile + "~" + arrLine2[1] + "~" + arrLine2[2]);
-                }
+            //if after all copies have been checked there are no avalible copies
+            if(loan == 0){
+                //print sorry
+                System.out.println("Sorry, no copies of " + materialName + " were avalible.\n");
             }
+            
+            
+            if(loan != 0){
+                File inputOldMediaFile = new File(oldmediaFile);
+                Scanner inOldMedia = new Scanner(inputOldMediaFile);
+                PrintWriter outOldMedia = new PrintWriter("temp.txt");
+                while(inOldMedia.hasNextLine()){
+                    String nextline = inOldMedia.nextLine();
+                    arrLine2 = nextline.split("~");
+                    String person = arrLine2[2];
+                    String [] spliter = person.split("#");
+                    String name = spliter[0];
+                    name = name.toLowerCase();
 
-            inOldMedia.close();
-            outOldMedia.close();
-            Files loansO = new Files("temp.txt", oldmediaFile);
-            loansO.fileReplace();
+                    name = name.replaceAll("[^a-z0-9]", "");
+
+                    if(name == null ? patronName == null : name.equals(patronName)){
+                       
+                    }
+                    else{
+                        outOldMedia.println(mediaFile + "~" + arrLine2[1] + "~" + arrLine2[2]);
+                        
+                    }
+                }
+
+                inOldMedia.close();
+                outOldMedia.close();
+                Files loansO = new Files("temp.txt", oldmediaFile);
+                loansO.fileReplace();
+            }
         }
         
-        File inputpatronFile = new File(patronFile);
-        Scanner inPatron = new Scanner(inputpatronFile);
-        PrintWriter outPatron = new PrintWriter("temp.txt");
-        if(patronFile == null ? oldpatronFile == null : patronFile.equals(oldpatronFile)){
-            
-
-            while(inPatron.hasNextLine()){
-                String nextline = inPatron.nextLine();
-                arrLine2 = nextline.split("~");
-                String title = arrLine2[3];
-
-                String name = title.toLowerCase();
-
-                name = name.replaceAll("[^a-z0-9]", "");
-
-
-                if(name == null ? materialname == null : name.equals(materialname)){
-                    arrLine2[1] = outdateArr[response];
-                    arrLine2[3] = materialArr[response];
-                    arrLine2[5] = indateArr[response];
-                    outPatron.println(arrLine2[0] + "~" + arrLine2[1] + "~" +arrLine2[2] + "~" +arrLine2[3] + "~" +arrLine2[4] + "~" +arrLine2[5]);
-                }
-                //outMedia.println(arrLine2[0] + " ~ " + arrLine2[1] + "~" + arrLine2[2]);
-                else{
-                    outPatron.println(arrLine2[0] + "~" + arrLine2[1] + "~" +arrLine2[2] + "~" +arrLine2[3] + "~" +arrLine2[4] + "~" +arrLine2[5]);
-                }
+        if(loan != 0){
+            //loans are printed to temp file
+            while(count < rnum){
+                out.println(materialArr[count] + "~" + mDateArr[count] + "~" + materialIdArr[count] + "~" + patronArr[count] + "~" + dobArr[count] + "~" + patronidArr[count] + "~" + 
+                            outdateArr[count] + "~" + indateArr[count] + "~" + employeeArr[count] + "~" + employeeidArr[count]);
+                count++;
             }
 
-            inPatron.close();
-            outPatron.close();
-            Files patron = new Files("temp.txt",patronFile);
-            patron.fileReplace();
-        }            
-        
+            in.close();
+            out.close();
+            Files Loans = new Files("temp.txt", "Loans.txt");
+            Loans.fileReplace();
+            
+            
+            //fixing all of the patron file mess
+            File inputpatronFile = new File(patronFile);
+            Scanner inPatron = new Scanner(inputpatronFile);
+            PrintWriter outPatron = new PrintWriter("temp.txt");
+            if(patronFile == null ? oldpatronFile == null : patronFile.equals(oldpatronFile)){
+
+
+                while(inPatron.hasNextLine()){
+                    String nextline = inPatron.nextLine();
+                    arrLine2 = nextline.split("~");
+                    String title = arrLine2[3];
+
+                    String name = title.toLowerCase();
+
+                    name = name.replaceAll("[^a-z0-9]", "");
+
+                    if(name == null ? materialname == null : name.equals(materialname)){
+                        arrLine2[1] = outdateArr[response];
+                        arrLine2[3] = materialArr[response];
+                        arrLine2[5] = indateArr[response];
+                        outPatron.println(arrLine2[0] + "~" + arrLine2[1] + "~" +arrLine2[2] + "~" +arrLine2[3] + "~" +arrLine2[4] + "~" +arrLine2[5]);
+                    }
+                    
+                    else{
+                        outPatron.println(arrLine2[0] + "~" + arrLine2[1] + "~" +arrLine2[2] + "~" +arrLine2[3] + "~" +arrLine2[4] + "~" +arrLine2[5]);
+                    }
+                }
+
+                inPatron.close();
+                outPatron.close();
+                Files patron = new Files("temp.txt",patronFile);
+                patron.fileReplace();
+            }            
+
+            else{
+                while(inPatron.hasNextLine()){
+                    outPatron.println(inPatron.nextLine());
+
+                }
+
+                outPatron.println("Checkout date ~" + outdateArr[response] + "~ Material name ~" + materialArr[response] + "~ dueDate ~" + indateArr[response]);
+
+                inPatron.close();
+                outPatron.close();
+
+                Files patron = new Files("temp.txt",patronFile);
+                patron.fileReplace();
+
+                File inputoldpatronFile = new File(oldpatronFile);
+                Scanner inoldPatron = new Scanner(inputoldpatronFile);
+                PrintWriter outoldPatron = new PrintWriter("temp.txt");
+
+                 while(inoldPatron.hasNextLine()){
+                    String nextline = inoldPatron.nextLine();
+                    arrLine2 = nextline.split("~");
+                    String title = arrLine2[3];
+
+                    String name = title.toLowerCase();
+
+                    name = name.replaceAll("[^a-z0-9]", "");
+
+
+                    if(name == null ? materialname == null : name.equals(materialname)){
+                        //outPatron.println("Checkout date ~" + outdateArr[response] + "~ Material name ~" + materialArr[response] + "~ dueDate ~" + indateArr[response]);
+                    }
+
+                    else{
+                        outoldPatron.println(nextline);
+                    }
+                }
+
+                inoldPatron.close();
+                outoldPatron.close();
+                Files patronold = new Files("temp.txt",oldpatronFile);
+                patronold.fileReplace();
+            }
+        }
         else{
-            while(inPatron.hasNextLine()){
-                outPatron.println(inPatron.nextLine());
-                
-            }
-            
-            outPatron.println("Checkout date ~" + outdateArr[response] + "~ Material name ~" + materialArr[response] + "~ dueDate ~" + indateArr[response]);
-            
-            inPatron.close();
-            outPatron.close();
-            
-            Files patron = new Files("temp.txt",patronFile);
-            patron.fileReplace();
-            
-            File inputoldpatronFile = new File(oldpatronFile);
-            Scanner inoldPatron = new Scanner(inputoldpatronFile);
-            PrintWriter outoldPatron = new PrintWriter("temp.txt");
-            
-             while(inoldPatron.hasNextLine()){
-                String nextline = inoldPatron.nextLine();
-                arrLine2 = nextline.split("~");
-                String title = arrLine2[3];
-
-                String name = title.toLowerCase();
-
-                name = name.replaceAll("[^a-z0-9]", "");
-
-
-                if(name == null ? materialname == null : name.equals(materialname)){
-                    outPatron.println("Checkout date ~" + outdateArr[response] + "~ Material name ~" + materialArr[response] + "~ dueDate ~" + indateArr[response]);
-                }
-                
-                else{
-                    outoldPatron.println(nextline);
-                }
-            }
-
-            inPatron.close();
-            outPatron.close();
-            Files patronold = new Files("temp.txt",oldpatronFile);
-            patronold.fileReplace();
+            in.close();
+            out.close();
         }
-        
     }
     
     public void searchLoans() throws FileNotFoundException{
