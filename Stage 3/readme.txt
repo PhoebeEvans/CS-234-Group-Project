@@ -4,5 +4,5 @@ Stage 3
 
 To compile the Java programs: 
 First download all of the Java files and save them in the location that the command prompt uses. Also, download and save in the same location all of the txt files with the exception of this readme.txt file.  
-Then open the command prompt. Next type ìjavac ApplicationStart.javaî This step compiles the code. Now, type ìjava ApplicationStartî. This will run the program. 
+Then open the command prompt. Next type ‚Äújavac *.java‚Äù This step compiles the code. Now, type ‚Äújava ApplicationStart‚Äù. This will run the program. 
 
