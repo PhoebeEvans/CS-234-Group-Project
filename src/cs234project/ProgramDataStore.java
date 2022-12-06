@@ -86,7 +86,7 @@ public class ProgramDataStore {
             readStream.close();
             
             //initialize dummy data
-            ProgramDataStore.init();
+            //ProgramDataStore.init();
         }
         catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class ProgramDataStore {
         writeStream.close();
     }
         catch (IOException e){
-            e.printStackTrace();
+           
             System.out.println("There was a problem saving program data and changes were not recorded.");
         }
     }

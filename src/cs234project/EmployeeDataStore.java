@@ -104,7 +104,7 @@ public class EmployeeDataStore {
             Employees = (ArrayList<Employee>) readStream.readObject();
             readStream.close();
             
-            EmployeeDataStore.init();
+           // EmployeeDataStore.init();
         }
         catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
