@@ -18,7 +18,7 @@ public class EmployeeTableModel extends AbstractTableModel {
         "Weekly Hours Worked", "Employee ID", "Salary", "Position", "Name", "Date of Birth", "Address", "Phone Number"
     };
     private final Class[] columnClass = new Class[] {
-        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
     };
     
     public EmployeeTableModel(ArrayList<Employee> employees){
@@ -120,5 +120,8 @@ public class EmployeeTableModel extends AbstractTableModel {
         employeeList.remove(row);
         fireTableDataChanged();
     }
+     public Employee getRowValue(int rowIndex){
+         return employeeList.get(rowIndex);
+     }
     
 }
