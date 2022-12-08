@@ -5,6 +5,7 @@
 package cs234project;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 import javax.swing.RowFilter;
 
@@ -25,7 +26,7 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         initComponents();
         rowSorter = new TableRowSorter<>((ProgramTableModel)ProgramsTable.getModel());
         ProgramsTable.setRowSorter(rowSorter);
-        updateButton.setVisible(false);
+        
     }
 
     /**
@@ -60,10 +61,14 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         ProgramsScrollPanel = new javax.swing.JScrollPane();
         ProgramsTable = new javax.swing.JTable();
         programTitle = new javax.swing.JLabel();
-        updateButton = new javax.swing.JButton();
-        searchLabel = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
+        searchLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnDelete = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         ProgramsMenuBar = new javax.swing.JMenuBar();
         ProgramsMenu = new javax.swing.JMenu();
         addMenuItem = new javax.swing.JMenuItem();
@@ -109,6 +114,8 @@ public class ProgramEditFrame extends javax.swing.JFrame {
 
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        programPanel.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout programPanelLayout = new javax.swing.GroupLayout(programPanel);
         programPanel.setLayout(programPanelLayout);
         programPanelLayout.setHorizontalGroup(
@@ -122,6 +129,7 @@ public class ProgramEditFrame extends javax.swing.JFrame {
 
         MainPanel.add(programPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 21, -1, -1));
 
+        ProgramsTable.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         ProgramsTable.setModel(new ProgramTableModel(ProgramDataStore.Programs));
         ProgramsTable.setColumnSelectionAllowed(true);
         ProgramsTable.setShowHorizontalLines(true);
@@ -134,39 +142,113 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         ProgramsScrollPanel.setViewportView(ProgramsTable);
         ProgramsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        MainPanel.add(ProgramsScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 560, 320));
+        MainPanel.add(ProgramsScrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 660, 390));
 
-        programTitle.setText("Programs");
-        MainPanel.add(programTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 21, -1, -1));
+        programTitle.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        programTitle.setText("Welcome to the Programs Catalog");
+        MainPanel.add(programTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
 
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-        MainPanel.add(updateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        searchLabel.setText("Search:");
-        MainPanel.add(searchLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 500, -1, -1));
-
+        searchField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchFieldActionPerformed(evt);
             }
         });
-        MainPanel.add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, -1));
 
+        searchLabel.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        searchLabel.setText("Search:");
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel1.setText("Search Programs:");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(191, Short.MAX_VALUE)
+                .addComponent(searchLabel)
+                .addGap(121, 121, 121)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        MainPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 730, 650, 150));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnDelete.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        MainPanel.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, -1, -1));
+
+        updateButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel2.setText("Edit Program Catalog:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(283, 283, 283)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnDelete)
+                            .addComponent(updateButton))))
+                .addContainerGap(241, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24)
+                .addComponent(updateButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addGap(32, 32, 32))
+        );
+
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 650, 160));
+
+        ProgramsMenuBar.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
 
         ProgramsMenu.setText("Menu");
+        ProgramsMenu.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
 
+        addMenuItem.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         addMenuItem.setText("Add");
         addMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +257,7 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         });
         ProgramsMenu.add(addMenuItem);
 
+        searchMenuItem.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         searchMenuItem.setText("Search");
         searchMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +266,7 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         });
         ProgramsMenu.add(searchMenuItem);
 
+        deleteMenuItem.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         deleteMenuItem.setText("Delete");
         deleteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +275,7 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         });
         ProgramsMenu.add(deleteMenuItem);
 
+        exitMenuItem.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         exitMenuItem.setText("Exit to Main Menu");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,13 +292,11 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
         );
 
         pack();
@@ -271,8 +354,14 @@ public class ProgramEditFrame extends javax.swing.JFrame {
             int row = ProgramsTable.getSelectedRow();
             int modelRow = ProgramsTable.convertRowIndexToModel( row );
             
-            model.removeRow( modelRow );
-      
+           
+            Program pro = model.getRowValue( modelRow );
+            
+            int answer = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the progam named : " +  pro.eventName +  " ?", "Delete Confirmation", JOptionPane.YES_NO_OPTION);
+            
+            if(answer == 0)
+                model.removeRow(modelRow);
+            
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
@@ -326,6 +415,8 @@ public class ProgramEditFrame extends javax.swing.JFrame {
     public static javax.swing.JButton btnDelete;
     private javax.swing.JMenuItem deleteMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -344,6 +435,8 @@ public class ProgramEditFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar4;
     private javax.swing.JMenuBar jMenuBar5;
     private javax.swing.JMenuBar jMenuBar6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel programPanel;
     private javax.swing.JLabel programTitle;
     public static javax.swing.JTextField searchField;
