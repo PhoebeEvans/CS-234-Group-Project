@@ -31,15 +31,6 @@ public class EmployeeAddFrame extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        hoursField = new javax.swing.JTextField();
-        idField = new javax.swing.JTextField();
-        salaryField = new javax.swing.JTextField();
-        positionField = new javax.swing.JTextField();
-        nameField = new javax.swing.JTextField();
-        dobField = new javax.swing.JTextField();
-        addressField = new javax.swing.JTextField();
-        phoneNumberField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -48,44 +39,62 @@ public class EmployeeAddFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        phoneNumberField = new javax.swing.JTextField();
+        addressField = new javax.swing.JTextField();
+        dobField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        positionField = new javax.swing.JTextField();
+        salaryField = new javax.swing.JTextField();
+        idField = new javax.swing.JTextField();
+        hoursField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel1.setText("Add an Employee");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, -1, -1));
+        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel7.setText("Date of Birth (MMDDYYYY) : ");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 364, -1, 30));
+
+        jLabel8.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel8.setText("Address");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel9.setText("Phone Number:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel6.setText("Name");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 293, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel4.setText("Salary");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel3.setText("Employee ID:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 93, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel2.setText("Weekly Hours Worked:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 27, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jLabel5.setText("Position");
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
-
-        hoursField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        hoursField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hoursFieldActionPerformed(evt);
-            }
-        });
-        MainPanel.add(hoursField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 160, 40));
-
-        idField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 160, 40));
-
-        salaryField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(salaryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 160, 40));
-
-        positionField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(positionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 160, 40));
-
-        nameField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 160, 40));
-
-        dobField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(dobField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, 160, 40));
-
-        addressField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        MainPanel.add(addressField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 500, 160, 40));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         phoneNumberField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         phoneNumberField.addActionListener(new java.awt.event.ActionListener() {
@@ -93,70 +102,38 @@ public class EmployeeAddFrame extends javax.swing.JFrame {
                 phoneNumberFieldActionPerformed(evt);
             }
         });
-        MainPanel.add(phoneNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 580, 160, 40));
+        jPanel2.add(phoneNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 500, 160, 40));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        addressField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(addressField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 160, 40));
 
-        jLabel7.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel7.setText("Date of Birth (MMDDYYYY) : ");
+        dobField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(dobField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 160, 40));
 
-        jLabel8.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel8.setText("Address");
+        nameField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 160, 40));
 
-        jLabel9.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel9.setText("Phone Number:");
+        positionField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(positionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 160, 40));
 
-        jLabel6.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel6.setText("Name");
+        salaryField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(salaryField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 160, 40));
 
-        jLabel4.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel4.setText("Salary");
+        idField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jPanel2.add(idField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 160, 40));
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel3.setText("Employee ID:");
+        hoursField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        hoursField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hoursFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(hoursField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 160, 40));
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel2.setText("Weekly Hours Worked:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7))
-                .addContainerGap(369, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(53, 53, 53)
-                .addComponent(jLabel4)
-                .addGap(119, 119, 119)
-                .addComponent(jLabel6)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel8)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel9)
-                .addGap(54, 54, 54))
-        );
-
-        MainPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 610, 580));
+        MainPanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 610, 580));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAdd.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnAdd.setText("Add");
@@ -165,36 +142,14 @@ public class EmployeeAddFrame extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 38, 70, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(170, Short.MAX_VALUE)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 760, 400, 110));
 
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 700, 400, 110));
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\jacqu\\Downloads\\employees.png")); // NOI18N
+        MainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 0, 220, 160));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 851, Short.MAX_VALUE)
-        );
+        getContentPane().add(MainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 851));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -273,6 +228,7 @@ public class EmployeeAddFrame extends javax.swing.JFrame {
     private javax.swing.JTextField hoursField;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
