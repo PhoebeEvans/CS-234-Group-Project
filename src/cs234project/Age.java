@@ -1,15 +1,20 @@
+package cs234project;
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cs234project;
+
 import java.util.Calendar;
+
 /**
  *
- * @author jacqu
+ * @author phoeb
  */
-public class Age {
-    
+public class Age{
+
     private int dateC;
     private int monthC;
     private int yearC;
@@ -99,6 +104,7 @@ public class Age {
         yearC = cal.get(Calendar.YEAR);
         
         String[] dueD = new String[3];
+        System.out.println(dob);
         dueD = dob.split("/");
 
         String monthtemp = dueD[0].replaceAll("[^0-9]", "");
@@ -201,3 +207,4 @@ public class Age {
     }
 
 }
+
