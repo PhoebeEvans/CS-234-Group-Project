@@ -1,20 +1,27 @@
+package cs234project;
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cs234project;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+
+//Add name after number and when assigning a number read down until there is no name.
 /**
  *
- * @author jacqu
+ * @author phoeb
  */
 public class idCreate {
-      /**
+
+    /**
      *
      * @param Id
      * @return
@@ -40,5 +47,4 @@ public class idCreate {
         return Id;
          
     }
-    
 }

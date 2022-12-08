@@ -99,4 +99,7 @@ public class ProgramTableModel extends AbstractTableModel {
         programList.remove(row);
         fireTableDataChanged();
     }
+    public Program getRowValue(int rowIndex){
+         return programList.get(rowIndex);
+     }
 }

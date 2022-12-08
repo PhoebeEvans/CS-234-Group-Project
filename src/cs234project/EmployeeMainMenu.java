@@ -14,7 +14,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
      * Creates new form EmployeeMainMenu
      */
     public EmployeeMainMenu() {
+        EmployeeDataStore.getLocalEmployeeData();
         initComponents();
+        
     }
 
     /**
@@ -29,27 +31,22 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
-        btnEdit = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnAdd1 = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel1.setText("Employees");
 
-        btnSearch.setText("Search");
+        btnSearch.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        btnSearch.setText("Search/Edit Employees");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
 
-        btnEdit.setText("Edit");
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
-            }
-        });
-
+        btnAdd.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,17 +54,19 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             }
         });
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
+        btnExit.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnExit.setText("Return to Main Menu");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
+            }
+        });
+
+        btnAdd1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        btnAdd1.setText("View Employee Catalog");
+        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd1ActionPerformed(evt);
             }
         });
 
@@ -76,63 +75,56 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(153, 153, 153)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExit)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAdd)
-                            .addComponent(btnDelete)
-                            .addComponent(btnEdit)
-                            .addComponent(btnSearch)
-                            .addComponent(jLabel1))))
-                .addContainerGap(226, Short.MAX_VALUE))
+                        .addGap(196, 196, 196)
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdd1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(268, 268, 268)
+                        .addComponent(jLabel1)))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
-                .addComponent(btnSearch)
-                .addGap(32, 32, 32)
-                .addComponent(btnEdit)
-                .addGap(27, 27, 27)
-                .addComponent(btnAdd)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete)
-                .addGap(30, 30, 30)
-                .addComponent(btnExit)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addGap(93, 93, 93)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(538, 440));
+        setSize(new java.awt.Dimension(718, 669));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        ProgramEditFrame frame = new ProgramEditFrame();
-        frame.setVisible(true);
-        ProgramEditFrame.updateButton.setVisible(true);
-    }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         EmployeeEditFrame frame = new EmployeeEditFrame();
         frame.setVisible(true);
-        EmployeeEditFrame.lblSearch.setVisible(true);
-        EmployeeEditFrame.searchField.setVisible(true);
+        
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -140,16 +132,15 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         add.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        EmployeeEditFrame frame = new EmployeeEditFrame();
-        frame.setVisible(true);
-        EmployeeEditFrame.DeleteButton.setVisible(true);
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         EmployeeDataStore.setLocalEmployeeData();
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        EmployeeEditFrame frame = new EmployeeEditFrame();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAdd1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +153,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -189,8 +180,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
