@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package cs234project;
+
 /**
  *
  * @author phoeb
@@ -14,6 +15,10 @@ public class GUILibrary {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        libraryMain l = new libraryMain();
+        l.libraryRun();
+        
     }
     
 }

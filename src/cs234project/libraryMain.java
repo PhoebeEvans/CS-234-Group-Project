@@ -4,19 +4,30 @@
  */
 package cs234project;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author phoeb
  */
 public class libraryMain extends javax.swing.JFrame {
-
+    private String currentDate;
     /**
      * Creates new form libraryMain
      */
     public libraryMain() {
         initComponents();
+        
+        getDate();
+        date.setText(currentDate);
     }
 
+    public void getDate(){
+        Age loandate = new Age();
+        currentDate = loandate.getcurrentDate();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,23 +40,139 @@ public class libraryMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        patronsButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        moviesButton = new javax.swing.JButton();
+        booksButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        loansButton = new javax.swing.JButton();
+        employeesButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        programsButton = new javax.swing.JButton();
+        date = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
-        jLabel1.setText("Library Menu");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\phoeb\\OneDrive - Eastern New Mexico University\\CS234\\dextercabin.gif")); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
+        jLabel1.setText("Leadville Library Menu");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
+
+        patronsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        patronsButton.setText("Patrons");
+        patronsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patronsButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/patronPic2.jpg"))); // NOI18N
+
+        moviesButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        moviesButton.setText("Movies");
+        moviesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moviesButtonActionPerformed(evt);
+            }
+        });
+
+        booksButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        booksButton.setText("Books");
+        booksButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                booksButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/movies.jpg"))); // NOI18N
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/books.jpg"))); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/loans.jpg"))); // NOI18N
+
+        loansButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        loansButton.setText("Loans");
+        loansButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansButtonActionPerformed(evt);
+            }
+        });
+
+        employeesButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        employeesButton.setText("Employees");
+        employeesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeesButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/employee.jpg"))); // NOI18N
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/programs.jpg"))); // NOI18N
+
+        programsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        programsButton.setText("Programs");
+        programsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programsButtonActionPerformed(evt);
+            }
+        });
+
+        date.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(0, 344, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(loansButton, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(46, 46, 46)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(employeesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(programsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(patronsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(46, 46, 46)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(booksButton, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(moviesButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -53,10 +180,55 @@ public class libraryMain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel1)))
-                .addContainerGap(565, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patronsButton)
+                    .addComponent(moviesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(booksButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loansButton)
+                    .addComponent(programsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(employeesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58))
         );
+
+        jMenu1.setText("Menu");
+
+        jMenuItem1.setText("Patrons");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Books");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Movies");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Loans");
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Employees");
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("Programs");
+        jMenu1.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,13 +241,101 @@ public class libraryMain extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setBounds(0, 0, 910, 859);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void patronsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patronsButtonActionPerformed
+        patrons();
+        
+    }//GEN-LAST:event_patronsButtonActionPerformed
+
+    private void moviesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesButtonActionPerformed
+        // TODO add your handling code here:
+        movies();
+        
+    }//GEN-LAST:event_moviesButtonActionPerformed
+
+    private void booksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksButtonActionPerformed
+        // TODO add your handling code here:
+        books();
+        
+        
+    }//GEN-LAST:event_booksButtonActionPerformed
+
+    private void loansButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansButtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            loans();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(libraryMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loansButtonActionPerformed
+
+    private void employeesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesButtonActionPerformed
+        // TODO add your handling code here:
+        
+        //EmployeeMainMenu e = new EmployeeMainMenu();
+        employees();
+        
+        
+    }//GEN-LAST:event_employeesButtonActionPerformed
+
+    private void programsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programsButtonActionPerformed
+        // TODO add your handling code here:
+        programs();
+        
+    }//GEN-LAST:event_programsButtonActionPerformed
+
+    public void programs(){
+        new ProgramsMainMenu().setVisible(true);
+    }
+    
+    
+    public void patrons(){
+        try {
+            // TODO add your handling code here:
+
+            patronGUI p = new patronGUI();
+            p.runPatron();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(libraryMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void movies(){
+        moviesRun m;
+        try {
+            m = new moviesRun();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(libraryMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void books(){
+        booksRun b;
+        try {
+            b = new booksRun();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(libraryMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void loans() throws FileNotFoundException{
+        new LoansGUI().setVisible(true);
+        //l.loansRun();
+        
+    }
+    
+    public void employees(){
+        new EmployeeMainMenu().setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void libraryRun() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -108,8 +368,29 @@ public class libraryMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton booksButton;
+    private javax.swing.JLabel date;
+    private javax.swing.JButton employeesButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton loansButton;
+    private javax.swing.JButton moviesButton;
+    private javax.swing.JButton patronsButton;
+    private javax.swing.JButton programsButton;
     // End of variables declaration//GEN-END:variables
 }

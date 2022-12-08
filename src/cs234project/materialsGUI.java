@@ -57,11 +57,15 @@ public class materialsGUI extends javax.swing.JFrame {
     /**
      * Creates new form materialsGUI
      */
-    public materialsGUI() throws FileNotFoundException {
-        initComponents();
+    public materialsGUI(int materialType) throws FileNotFoundException {
         
-        materialType = 1;
+        initComponents();
+        //materialType = 2;
+        this.materialType = materialType;
+        
+        
         materialType();
+        
         fileArr();
         
         model = new DefaultTableModel(table, columns);
@@ -73,13 +77,8 @@ public class materialsGUI extends javax.swing.JFrame {
         materialMenu();
     }
 
-    public void setmaterialFile(String fileName){
-        materialFile = fileName;
-    }
     
-    public void setmaterialType(int materialType){
-        this.materialType = materialType;
-    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,6 +91,7 @@ public class materialsGUI extends javax.swing.JFrame {
 
         fictionNonfictionButtonGroup = new javax.swing.ButtonGroup();
         searchButtonGroup = new javax.swing.ButtonGroup();
+        jLabel15 = new javax.swing.JLabel();
         addMaterials = new javax.swing.JPanel();
         addmaterialsMenuTitle = new javax.swing.JLabel();
         materialName = new javax.swing.JLabel();
@@ -109,6 +109,8 @@ public class materialsGUI extends javax.swing.JFrame {
         copiesMaterials = new javax.swing.JLabel();
         copiesCounter = new javax.swing.JSpinner();
         saveAddMaterials = new javax.swing.JButton();
+        booksPic = new javax.swing.JLabel();
+        moviesPic = new javax.swing.JLabel();
         removeEditMaterials = new javax.swing.JPanel();
         removeEditmaterialsMenuTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -137,6 +139,7 @@ public class materialsGUI extends javax.swing.JFrame {
         editMaterialButton = new javax.swing.JButton();
         searchMaterialButton = new javax.swing.JButton();
         viewMaterialButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         addMaterialsMenu = new javax.swing.JMenuItem();
@@ -145,7 +148,9 @@ public class materialsGUI extends javax.swing.JFrame {
         searchMaterialsMenu = new javax.swing.JMenuItem();
         viewMaterialsMenu = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel15.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel15.setText("Enter the date of birth in MM/DD/YYYY format.");
+
         setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
 
         addmaterialsMenuTitle.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
@@ -234,47 +239,64 @@ public class materialsGUI extends javax.swing.JFrame {
             }
         });
 
+        booksPic.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        booksPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/books.jpg"))); // NOI18N
+
+        moviesPic.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        moviesPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/movies.jpg"))); // NOI18N
+
         javax.swing.GroupLayout addMaterialsLayout = new javax.swing.GroupLayout(addMaterials);
         addMaterials.setLayout(addMaterialsLayout);
         addMaterialsLayout.setHorizontalGroup(
             addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addMaterialsLayout.createSequentialGroup()
+                .addGap(328, 328, 328)
+                .addComponent(saveAddMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMaterialsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMaterialsLayout.createSequentialGroup()
+                            .addComponent(copiesMaterials)
+                            .addGap(65, 65, 65)
+                            .addComponent(copiesCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(addMaterialsLayout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(addmaterialsMenuTitle))
-                    .addGroup(addMaterialsLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addMaterialsLayout.createSequentialGroup()
-                                .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(materialName)
-                                    .addComponent(materialAuthor, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(materialCountry, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(materialYear, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(nameResponse)
-                                    .addComponent(countryResponse, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                                    .addComponent(authorResponse)
-                                    .addComponent(yearResponse)))
-                            .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addMaterialsLayout.createSequentialGroup()
-                                    .addComponent(copiesMaterials)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(copiesCounter, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(addMaterialsLayout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(saveAddMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(materialName)
+                            .addComponent(materialAuthor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(materialCountry, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(materialYear, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(nameResponse)
+                            .addComponent(countryResponse)
+                            .addComponent(authorResponse)
+                            .addComponent(yearResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(72, 72, 72))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addMaterialsLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(addmaterialsMenuTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(booksPic, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(moviesPic, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         addMaterialsLayout.setVerticalGroup(
             addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addMaterialsLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(addmaterialsMenuTitle)
-                .addGap(71, 71, 71)
+                .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addMaterialsLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(moviesPic, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(booksPic, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addMaterialsLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(addmaterialsMenuTitle)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(materialName)
                     .addComponent(nameResponse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,9 +318,9 @@ public class materialsGUI extends javax.swing.JFrame {
                 .addGroup(addMaterialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(copiesMaterials)
                     .addComponent(copiesCounter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                .addGap(28, 28, 28)
                 .addComponent(saveAddMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
         removeEditmaterialsMenuTitle.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
@@ -531,7 +553,9 @@ public class materialsGUI extends javax.swing.JFrame {
                 .addGap(118, 118, 118))
         );
 
-        materialsMenuTitle.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
+        materialsMenu.setBackground(new java.awt.Color(255, 255, 255));
+
+        materialsMenuTitle.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         materialsMenuTitle.setText("Materials Menu");
 
         addMaterialButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
@@ -574,38 +598,49 @@ public class materialsGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
+
         javax.swing.GroupLayout materialsMenuLayout = new javax.swing.GroupLayout(materialsMenu);
         materialsMenu.setLayout(materialsMenuLayout);
         materialsMenuLayout.setHorizontalGroup(
             materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(materialsMenuLayout.createSequentialGroup()
-                .addGap(269, 269, 269)
-                .addGroup(materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(removeMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(materialsMenuTitle)
-                        .addComponent(addMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(editMaterialButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(materialsMenuTitle)
+                .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, materialsMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(removeMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(addMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(editMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewMaterialButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(200, 200, 200))
         );
         materialsMenuLayout.setVerticalGroup(
             materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(materialsMenuLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(materialsMenuTitle)
-                .addGap(81, 81, 81)
-                .addComponent(addMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGroup(materialsMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(materialsMenuLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3))
+                    .addGroup(materialsMenuLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(materialsMenuTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)))
                 .addComponent(removeMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(editMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(53, 53, 53)
                 .addComponent(searchMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addGap(47, 47, 47)
                 .addComponent(viewMaterialButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Materials Menu");
@@ -855,7 +890,7 @@ public class materialsGUI extends javax.swing.JFrame {
                 removeW = new removeMaterialWindow(materialname, materialType, materialFile, numb);
                 removeW.removeMwindow(materialname, materialType, materialFile, numb);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(NewGUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(patronGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }  
     }//GEN-LAST:event_jTable2MouseClicked
@@ -1437,6 +1472,9 @@ public class materialsGUI extends javax.swing.JFrame {
             //search
             searchmaterialsMenuTitle.setText("Search Books");
             authorS.setText("Author");
+            
+            booksPic.setVisible(true);
+            moviesPic.setVisible(false);
         }
         
         else if(materialType ==2){
@@ -1477,12 +1515,15 @@ public class materialsGUI extends javax.swing.JFrame {
             //search
             searchmaterialsMenuTitle.setText("Search Moviess");
             authorS.setText("Director");
+            
+            booksPic.setVisible(false);
+            moviesPic.setVisible(true);
         }
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void runMaterial(int materialType) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1508,10 +1549,13 @@ public class materialsGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        this.materialType = materialType;
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new materialsGUI().setVisible(true);
+                    new materialsGUI(materialType).setVisible(true);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(materialsGUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1526,6 +1570,7 @@ public class materialsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel addmaterialsMenuTitle;
     private javax.swing.JTextField authorResponse;
     private javax.swing.JRadioButton authorS;
+    private javax.swing.JLabel booksPic;
     private javax.swing.JSpinner copiesCounter;
     private javax.swing.JLabel copiesMaterials;
     private javax.swing.JTextField countryResponse;
@@ -1538,6 +1583,8 @@ public class materialsGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton genreS;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -1554,6 +1601,7 @@ public class materialsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel materialYear;
     private javax.swing.JPanel materialsMenu;
     private javax.swing.JLabel materialsMenuTitle;
+    private javax.swing.JLabel moviesPic;
     private javax.swing.JTextField nameResponse;
     private javax.swing.JPanel removeEditMaterials;
     private javax.swing.JLabel removeEditmaterialsMenuTitle;
