@@ -1,4 +1,4 @@
-package GUIPackage;
+package guilibrary;
 
 
 
@@ -104,6 +104,7 @@ public class Age{
         yearC = cal.get(Calendar.YEAR);
         
         String[] dueD = new String[3];
+        System.out.println(dob);
         dueD = dob.split("/");
 
         String monthtemp = dueD[0].replaceAll("[^0-9]", "");
