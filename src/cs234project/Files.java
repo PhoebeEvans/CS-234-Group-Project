@@ -7,10 +7,10 @@ import java.io.*;
 import java.util.Scanner;
 /**
  *
- * @author jacqu
+ * @author phoeb
  */
 public class Files {
-     private String fileName;
+    private String fileName;
     private String fileReplace;
     
     public void fileCreate() throws FileNotFoundException{
@@ -27,12 +27,41 @@ public class Files {
         File viewFile = new File(fileName);
         Scanner in = new Scanner(viewFile);
         
+        int value = 100; 
+        
+        int rnum = 0;
+        String[] nameArr = new String[value];
+        String[] idArr = new String[value];
+        String[] ageArr = new String[value];
+        String[] ageGroupArr = new String[value];
+        String[] dobArr = new String[value]; 
+        String[] addressArr = new String[value];
+        String[] phoneArr = new String[value];
+        String[] arrLine = new String[8];
+        String[] tempArr = new String[1];
+        idArr = new String[value];
+  
         while(in.hasNextLine()){
-                
-                System.out.println(in.nextLine());
-                
+            String lineChange = in.nextLine();
+            
+            
+            arrLine = lineChange.split("_");
+            //System.out.println(arrLine[0]);
+            
+            nameArr[rnum] = arrLine[1];
+            ageArr[rnum] = arrLine[2];
+            ageGroupArr[rnum] = arrLine[3];
+            dobArr[rnum] = arrLine[4];
+            addressArr[rnum] = arrLine[5];
+            phoneArr[rnum] = arrLine[6];
+            idArr[rnum] = arrLine[7];
+            
+            //System.out.println(name[num]);
+            //System.out.println(age[num]);
+            
+            rnum++;
+          
         }
-        System.out.println("");
                 
                 
     }
@@ -62,5 +91,6 @@ public class Files {
     public Files(String fileName){
         this.fileName = fileName;
     }
+    
     
 }
