@@ -1,8 +1,0 @@
-1_ Amelia Anderson _18_Adult_ 07/07/2004 _ 810 Front St., Leadville, CO 80461 _719-486-0749_ 2.001
-2_ Archie Austin _16_Child_ 05/05/2006 _ 510 Spruce St., Leadville, CO 80461 _ 719-486-1234 _ 2.002
-3_ Lillian Stuart _21_Adult_ 05/23/2001 _2878 CO Rd. 22, Fairplay, CO 80440_ 719-486-3333 _ 2.003
-4_ Jack Morton _8_Child_ 11/11/2014 _ 2880 Halfmoon Rd., Leadville, CO 80461 _ 719-486-0981 _ 2.004
-5_ Marmaduke Archibald Pomiselus _44_Adult_ 12/12/1977 _ 2600 Halfmoon Rd., Leadville, CO 80641 _ 719-486-3435 _ 2.005
-6_ Calista Langley _53_Adult_ 02/13/1969 _ 210 W. 8th St., Leadville, CO 80461 _ 719-486-3918 _ 2.006
-7_ Cassie Pomiselus _6_Child_ 04/04/2016 _ 2600 Halfmoon Rd., Leadville, CO 80461 _ 719-486-3435 _ 2.007
-8_ Charles Pennington _24_Adult_ 08/01/1998 _ 2876 CO Rd. 22, Fairplay, CO 80440 _ 719-486-0953 _ 2.008
