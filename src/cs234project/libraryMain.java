@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package cs234project;
+package oldLibrary;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -55,12 +55,12 @@ public class libraryMain extends javax.swing.JFrame {
         date = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        patronsMenu = new javax.swing.JMenuItem();
+        booksMenu = new javax.swing.JMenuItem();
+        moviesMenu = new javax.swing.JMenuItem();
+        loansMenu = new javax.swing.JMenuItem();
+        employeesMenu = new javax.swing.JMenuItem();
+        programsMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +69,7 @@ public class libraryMain extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel1.setText("Leadville Library Menu");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/dextercabin.gif"))); // NOI18N
 
         patronsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         patronsButton.setText("Patrons");
@@ -79,7 +79,7 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/patronPic2.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/patronPic2.jpg"))); // NOI18N
 
         moviesButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         moviesButton.setText("Movies");
@@ -97,11 +97,11 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/movies.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/movies.jpg"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/books.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/books.jpg"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/loans.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/loans.jpg"))); // NOI18N
 
         loansButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         loansButton.setText("Loans");
@@ -119,9 +119,9 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/employee.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/employee.jpg"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/programs.jpg"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/programs.jpg"))); // NOI18N
 
         programsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         programsButton.setText("Programs");
@@ -208,23 +208,53 @@ public class libraryMain extends javax.swing.JFrame {
 
         jMenu1.setText("Menu");
 
-        jMenuItem1.setText("Patrons");
-        jMenu1.add(jMenuItem1);
+        patronsMenu.setText("Patrons");
+        patronsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patronsMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(patronsMenu);
 
-        jMenuItem2.setText("Books");
-        jMenu1.add(jMenuItem2);
+        booksMenu.setText("Books");
+        booksMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                booksMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(booksMenu);
 
-        jMenuItem3.setText("Movies");
-        jMenu1.add(jMenuItem3);
+        moviesMenu.setText("Movies");
+        moviesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moviesMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(moviesMenu);
 
-        jMenuItem4.setText("Loans");
-        jMenu1.add(jMenuItem4);
+        loansMenu.setText("Loans");
+        loansMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(loansMenu);
 
-        jMenuItem5.setText("Employees");
-        jMenu1.add(jMenuItem5);
+        employeesMenu.setText("Employees");
+        employeesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeesMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(employeesMenu);
 
-        jMenuItem6.setText("Programs");
-        jMenu1.add(jMenuItem6);
+        programsMenu.setText("Programs");
+        programsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programsMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(programsMenu);
 
         jMenuBar1.add(jMenu1);
 
@@ -285,6 +315,40 @@ public class libraryMain extends javax.swing.JFrame {
         programs();
         
     }//GEN-LAST:event_programsButtonActionPerformed
+
+    private void patronsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patronsMenuActionPerformed
+        // TODO add your handling code here:
+        patrons();
+    }//GEN-LAST:event_patronsMenuActionPerformed
+
+    private void booksMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksMenuActionPerformed
+        // TODO add your handling code here:
+        books();
+    }//GEN-LAST:event_booksMenuActionPerformed
+
+    private void moviesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moviesMenuActionPerformed
+        // TODO add your handling code here:
+        movies();
+    }//GEN-LAST:event_moviesMenuActionPerformed
+
+    private void loansMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansMenuActionPerformed
+        try {
+            // TODO add your handling code here:
+            loans();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(libraryMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_loansMenuActionPerformed
+
+    private void employeesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeesMenuActionPerformed
+        // TODO add your handling code here:
+        employees();
+    }//GEN-LAST:event_employeesMenuActionPerformed
+
+    private void programsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programsMenuActionPerformed
+        // TODO add your handling code here:
+        programs();
+    }//GEN-LAST:event_programsMenuActionPerformed
 
     public void programs(){
         new ProgramsMainMenu().setVisible(true);
@@ -369,8 +433,10 @@ public class libraryMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton booksButton;
+    private javax.swing.JMenuItem booksMenu;
     private javax.swing.JLabel date;
     private javax.swing.JButton employeesButton;
+    private javax.swing.JMenuItem employeesMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -381,16 +447,14 @@ public class libraryMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loansButton;
+    private javax.swing.JMenuItem loansMenu;
     private javax.swing.JButton moviesButton;
+    private javax.swing.JMenuItem moviesMenu;
     private javax.swing.JButton patronsButton;
+    private javax.swing.JMenuItem patronsMenu;
     private javax.swing.JButton programsButton;
+    private javax.swing.JMenuItem programsMenu;
     // End of variables declaration//GEN-END:variables
 }

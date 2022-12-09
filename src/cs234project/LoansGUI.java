@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package cs234project;
+package oldLibrary;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -84,6 +84,8 @@ public class LoansGUI extends javax.swing.JFrame {
     private String[] employeeArr;
     private String[] employeeidArr;
     
+    private int overDuedate;
+    
     private int loan; 
     
     private String [][] table;
@@ -119,7 +121,7 @@ public class LoansGUI extends javax.swing.JFrame {
     
     public void overdue() throws FileNotFoundException{
         int value = 1000; 
-        
+        overDuedate = 0;
         
         materialArr = new String[value];
         mDateArr = new String[value];
@@ -173,6 +175,7 @@ public class LoansGUI extends javax.swing.JFrame {
                 //the material is overdue
                 overDue.clear();
                 overDue.addElement(materialArr[count] + " is overdue by " + due + " days.\n");
+                overDuedate = 1;
                 
                 patronFile = patronArr[count] + dobArr[count] + "Id" + patronidArr[count];
                 patronFile = patronFile.replaceAll("[^a-zA-Z0-9]", "");
@@ -259,8 +262,7 @@ public class LoansGUI extends javax.swing.JFrame {
                 Files patrons = new Files("temp.txt",patronFile);
                 patrons.fileReplace();    
                 
-                overDue o = new overDue(overDue);
-                o.over(overDue);
+                
         
         
                 }
@@ -275,6 +277,11 @@ public class LoansGUI extends javax.swing.JFrame {
         out.close();
         Files loans = new Files("temp.txt", "Loans.txt");
         loans.fileReplace();
+        
+        if(overDuedate == 1){
+            overDue o = new overDue(overDue);
+            o.over(overDue);
+        }
         
        
     }
@@ -554,7 +561,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/dextercabin.gif"))); // NOI18N
 
         javax.swing.GroupLayout loansMenuLayout = new javax.swing.GroupLayout(loansMenu);
         loansMenu.setLayout(loansMenuLayout);
