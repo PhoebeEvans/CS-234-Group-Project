@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package oldLibrary;
+package cs234project;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -114,7 +114,7 @@ public class patronInfo extends javax.swing.JFrame {
 
         jLabel15.setText("Id #:");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/denali.jpg"))); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/denali.jpg"))); // NOI18N
 
         jLabel17.setText("All Loans");
 

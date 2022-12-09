@@ -114,7 +114,7 @@ public class patronInfo extends javax.swing.JFrame {
 
         jLabel15.setText("Id #:");
 
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\phoeb\\OneDrive - Eastern New Mexico University\\CS234\\IMG_4621.gif")); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/denali.jpg"))); // NOI18N
 
         jLabel17.setText("All Loans");
 
@@ -227,6 +227,8 @@ public class patronInfo extends javax.swing.JFrame {
         Scanner in = new Scanner(inputFile);
         
         patronLoansList.setModel(model);
+        model.clear();
+        
         while(in.hasNextLine()){
             String linechange = in.nextLine();
             

@@ -132,7 +132,6 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         ProgramsTable.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         ProgramsTable.setModel(new ProgramTableModel(ProgramDataStore.Programs));
         ProgramsTable.setColumnSelectionAllowed(true);
-        ProgramsTable.setShowHorizontalLines(true);
         ProgramsTable.getTableHeader().setReorderingAllowed(false);
         ProgramsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -389,6 +388,10 @@ public class ProgramEditFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ProgramEditFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

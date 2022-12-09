@@ -34,18 +34,29 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnAdd1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
-        jLabel1.setText("Employees");
+        jLabel1.setText("Employees Menu");
+        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
+        btnSearch.setBackground(new java.awt.Color(222, 222, 222));
         btnSearch.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnSearch.setText("Search/Edit Employees");
+        btnSearch.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
+        MainPanel.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 255, 65));
 
+        btnAdd.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
         btnAdd.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +64,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
+        MainPanel.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 255, 67));
 
+        btnExit.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
         btnExit.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnExit.setText("Return to Main Menu");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +74,9 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
+        MainPanel.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 255, 66));
 
+        btnAdd1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
         btnAdd1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         btnAdd1.setText("View Employee Catalog");
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,53 +84,12 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
                 btnAdd1ActionPerformed(evt);
             }
         });
+        MainPanel.add(btnAdd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 255, 59));
 
-        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
-        MainPanel.setLayout(MainPanelLayout);
-        MainPanelLayout.setHorizontalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAdd1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabel1)))
-                .addContainerGap(251, Short.MAX_VALUE))
-        );
-        MainPanelLayout.setVerticalGroup(
-            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addGap(93, 93, 93)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/Screenshot 2022-12-08 140054.png"))); // NOI18N
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(MainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 660));
 
         setSize(new java.awt.Dimension(718, 669));
         setLocationRelativeTo(null);
@@ -168,6 +142,7 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EmployeeMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -184,5 +159,6 @@ public class EmployeeMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

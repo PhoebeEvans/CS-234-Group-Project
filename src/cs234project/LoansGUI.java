@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package cs234project;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -90,14 +92,17 @@ public class LoansGUI extends javax.swing.JFrame {
     private DefaultListModel dm = new DefaultListModel();
     private DefaultListModel dm2 = new DefaultListModel();
     private DefaultListModel sm = new DefaultListModel();
+    private DefaultListModel overDue = new DefaultListModel();
     
     private DefaultTableModel model = new DefaultTableModel(table, columns);
     /**
      * Creates new form LoansGUI
+     * @throws java.io.FileNotFoundException
      */
-    public LoansGUI() throws FileNotFoundException, FileNotFoundException {
+    public LoansGUI() throws FileNotFoundException{
         initComponents();
         
+        overdue();
         fileArr();
         
         model = new DefaultTableModel(table, columns);
@@ -112,7 +117,167 @@ public class LoansGUI extends javax.swing.JFrame {
         dueDate = loandate.getreturnDate(loanlength);
     }
     
-    
+    public void overdue() throws FileNotFoundException{
+        int value = 1000; 
+        
+        
+        materialArr = new String[value];
+        mDateArr = new String[value];
+        materialIdArr = new String[value];
+        patronArr = new String[value];
+        dobArr = new String[value]; 
+        patronidArr = new String[value];
+        indateArr = new String[value];
+        arrLine = new String[10];
+        outdateArr = new String[value];
+        employeeArr = new String[value];
+        employeeidArr = new String[value];
+        
+        int rnum = 0;
+        
+        File inputFile = new File("Loans.txt");
+        Scanner in = new Scanner(inputFile);
+        PrintWriter out = new PrintWriter("temp.txt");
+        
+        
+  
+        while(in.hasNextLine()){
+            String lineChange = in.nextLine();
+            
+            
+            arrLine = lineChange.split("~");
+            //System.out.println(arrLine[0]);
+            materialArr[rnum] = arrLine[0];
+            mDateArr[rnum] = arrLine[1];
+            materialIdArr[rnum] = arrLine[2];
+            patronArr[rnum] = arrLine[3];
+            dobArr[rnum] = arrLine[4];
+            patronidArr[rnum] = arrLine[5];
+            indateArr[rnum] = arrLine[6];
+            outdateArr[rnum] = arrLine[7];
+            employeeArr[rnum] = arrLine[8];
+            employeeidArr[rnum] = arrLine[9];
+            
+            //System.out.println(name[num]);
+            //System.out.println(age[num]);
+            
+            rnum++;
+        }
+        
+        int count = 0;
+        while(count < rnum){
+            String dueDate = outdateArr[count];
+            Age returns = new Age();
+            int due = returns.overDue(dueDate);
+            if(due > 0){
+                //the material is overdue
+                overDue.clear();
+                overDue.addElement(materialArr[count] + " is overdue by " + due + " days.\n");
+                
+                patronFile = patronArr[count] + dobArr[count] + "Id" + patronidArr[count];
+                patronFile = patronFile.replaceAll("[^a-zA-Z0-9]", "");
+                patronFile = patronFile + ".txt";
+                
+                patronname = patronArr[count];
+                String patronName = patronname.replaceAll("[^a-z0-9]", "");
+                
+                mediaFile = materialArr[count] + mDateArr[count] + "Id" + materialIdArr[count];
+                mediaFile = mediaFile.replaceAll("[^a-zA-Z0-9]", "");
+                mediaFile = mediaFile + ".txt";
+                
+                materialName = materialArr[count];
+                String materialname = materialName.replaceAll("[^a-z0-9]", "");
+                
+                currentDate = indateArr[count];
+                dueDate = outdateArr[count];
+                
+                outdateArr[count] = dueDate + " overdue/" + due;
+                out.println(materialArr[count] + "~" + mDateArr[count] + "~" + materialIdArr[count] + "~" + patronArr[count] + "~" + dobArr[count] + "~" + patronidArr[count] + "~" + 
+                        indateArr[count] + "~" + outdateArr[count] + " ~" + employeeArr[count] + "~" + employeeidArr[count]);
+                
+                //mediaFile update
+                File inputMediaFile = new File(mediaFile);
+                Scanner inMedia = new Scanner(inputMediaFile);
+                PrintWriter outMedia = new PrintWriter("temp.txt");
+                while(inMedia.hasNextLine()){
+                    String nextline = inMedia.nextLine();
+                    arrLine2 = nextline.split("~");
+                    String person = arrLine2[2];
+                    String [] spliter = person.split("#");
+                    String name = spliter[0];
+                    name = name.toLowerCase();
+                     
+
+                    name = name.replaceAll("[^a-z0-9]", "");
+                    
+                    
+                    if(name == null ? patronName == null : name.equals(patronName)){
+                        
+                        arrLine2[2] = arrLine2[2] + "#" + "overdue by " + due + " days. ";
+                        System.out.println(materialName + " was loaned to " + patronname + " on " + currentDate + " it is due " + dueDate);
+                        loan = 1;
+                        
+
+                    }
+                    outMedia.println(arrLine2[0] + " ~ " + arrLine2[1] + "~" + arrLine2[2]);
+                }
+                
+                inMedia.close();
+                outMedia.close();
+                Files loans = new Files("temp.txt", mediaFile);
+                loans.fileReplace();
+                    
+                    
+                File inputpatronFile = new File(patronFile);
+                Scanner inPatron = new Scanner(inputpatronFile);
+                PrintWriter outPatron = new PrintWriter("temp.txt");
+
+                while(inPatron.hasNextLine()){
+                    String nextline = inPatron.nextLine();
+                    arrLine2 = nextline.split("~");
+                    String title = arrLine2[3];
+                    
+                    String name = title.toLowerCase();
+                     
+                    name = name.replaceAll("[^a-z0-9]", "");
+                    
+                    
+                    if(name == null ? materialname == null : name.equals(materialname)){
+                        
+                        arrLine2[5] = arrLine[5] + "#" + "overdue by " + due + " days. ";
+                        
+                        loan = 1;
+                        
+
+                    }
+                    //outMedia.println(arrLine2[0] + " ~ " + arrLine2[1] + "~" + arrLine2[2]);
+                    outPatron.println(arrLine2[0] + "~" + arrLine2[1] + "~" +arrLine2[2] + "~" +arrLine2[3] + "~" +arrLine2[4] + "~" +arrLine2[5]);
+                }
+                
+                inPatron.close();
+                outPatron.close();
+                Files patrons = new Files("temp.txt",patronFile);
+                patrons.fileReplace();    
+                
+                overDue o = new overDue(overDue);
+                o.over(overDue);
+        
+        
+                }
+                else{
+                    out.println(materialArr[count] + "~" + mDateArr[count] + "~" + materialIdArr[count] + "~" + patronArr[count] + "~" + dobArr[count] + "~" + patronidArr[count] + "~" + 
+                            indateArr[count] + "~" + outdateArr[count] + " ~" + employeeArr[count] + "~" + employeeidArr[count]);
+                }
+                count++;    
+            }
+        
+        in.close();
+        out.close();
+        Files loans = new Files("temp.txt", "Loans.txt");
+        loans.fileReplace();
+        
+       
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,6 +311,7 @@ public class LoansGUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         viewLoans = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -154,7 +320,8 @@ public class LoansGUI extends javax.swing.JFrame {
         editRemoveTitle = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         editTable = new javax.swing.JTable();
-        jLabel12 = new javax.swing.JLabel();
+        editRinstruct = new javax.swing.JLabel();
+        refreshLoans = new javax.swing.JButton();
         addLoans = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -203,7 +370,7 @@ public class LoansGUI extends javax.swing.JFrame {
         searchL = new javax.swing.JMenuItem();
         viewL = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        searchMenu.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel1.setText("Search Loans");
@@ -220,6 +387,16 @@ public class LoansGUI extends javax.swing.JFrame {
         jLabel4.setText("Search");
 
         searchField.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchFieldMouseClicked(evt);
+            }
+        });
+        searchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFieldActionPerformed(evt);
+            }
+        });
 
         loansList.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         loansList.setModel(new javax.swing.AbstractListModel<String>() {
@@ -229,6 +406,7 @@ public class LoansGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(loansList);
 
+        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         searchLoansButtonGroup.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jRadioButton1.setText("Material Names");
@@ -238,6 +416,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         searchLoansButtonGroup.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jRadioButton2.setText("PatronNames");
@@ -247,6 +426,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
         searchLoansButtonGroup.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jRadioButton3.setText("EmployeeNames");
@@ -256,6 +436,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
         searchLoansButtonGroup.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jRadioButton4.setText("Due Dates");
@@ -265,6 +446,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
         searchLoansButtonGroup.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jRadioButton5.setText("Checkout Dates");
@@ -317,7 +499,7 @@ public class LoansGUI extends javax.swing.JFrame {
                 .addGroup(searchMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(searchMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -326,6 +508,8 @@ public class LoansGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
+
+        loansMenu.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel3.setText("Loans Menu");
@@ -370,42 +554,48 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
+
         javax.swing.GroupLayout loansMenuLayout = new javax.swing.GroupLayout(loansMenu);
         loansMenu.setLayout(loansMenuLayout);
         loansMenuLayout.setHorizontalGroup(
             loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loansMenuLayout.createSequentialGroup()
+                .addComponent(jLabel17)
+                .addGap(23, 23, 23)
                 .addGroup(loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(loansMenuLayout.createSequentialGroup()
-                        .addGap(323, 323, 323)
+                    .addComponent(jLabel3)
+                    .addGroup(loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(loansMenuLayout.createSequentialGroup()
-                        .addGap(294, 294, 294)
-                        .addComponent(jLabel3)))
-                .addContainerGap(311, Short.MAX_VALUE))
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         loansMenuLayout.setVerticalGroup(
             loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loansMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel3)
-                .addGap(86, 86, 86)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGroup(loansMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(loansMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3)
+                        .addGap(86, 86, 86)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel17))
+                .addGap(47, 47, 47)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(33, 33, 33)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(32, 32, 32)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
+
+        viewLoans.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel2.setText("View Loans");
@@ -446,6 +636,8 @@ public class LoansGUI extends javax.swing.JFrame {
                 .addGap(47, 47, 47))
         );
 
+        editRemoveLoans.setBackground(new java.awt.Color(255, 255, 255));
+
         editRemoveTitle.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         editRemoveTitle.setText("Loans");
 
@@ -467,7 +659,14 @@ public class LoansGUI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(editTable);
 
-        jLabel12.setText("Click on the part of the loan you want to edit. ");
+        editRinstruct.setText("Click on the part of the loan you want to edit. ");
+
+        refreshLoans.setText("Refresh");
+        refreshLoans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshLoansActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout editRemoveLoansLayout = new javax.swing.GroupLayout(editRemoveLoans);
         editRemoveLoans.setLayout(editRemoveLoansLayout);
@@ -479,25 +678,33 @@ public class LoansGUI extends javax.swing.JFrame {
                 .addGap(361, 361, 361))
             .addGroup(editRemoveLoansLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(editRemoveLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
-                    .addGroup(editRemoveLoansLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(editRemoveLoansLayout.createSequentialGroup()
+                .addGroup(editRemoveLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(editRemoveLoansLayout.createSequentialGroup()
+                        .addGap(324, 324, 324)
+                        .addComponent(refreshLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(editRemoveLoansLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(editRinstruct)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         editRemoveLoansLayout.setVerticalGroup(
             editRemoveLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editRemoveLoansLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(editRemoveTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addComponent(editRinstruct)
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(refreshLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
+        addLoans.setBackground(new java.awt.Color(255, 255, 255));
         addLoans.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addLoans.setPreferredSize(new java.awt.Dimension(750, 750));
 
@@ -511,6 +718,11 @@ public class LoansGUI extends javax.swing.JFrame {
         jLabel7.setText("Patron Search");
 
         patronSearchField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        patronSearchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                patronSearchFieldMouseClicked(evt);
+            }
+        });
         patronSearchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 patronSearchFieldActionPerformed(evt);
@@ -525,6 +737,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        namesButton.setBackground(new java.awt.Color(255, 255, 255));
         addPatron.add(namesButton);
         namesButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         namesButton.setText("Names");
@@ -534,6 +747,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        agesButton.setBackground(new java.awt.Color(255, 255, 255));
         addPatron.add(agesButton);
         agesButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         agesButton.setText("Ages");
@@ -543,6 +757,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        ageGroupButton.setBackground(new java.awt.Color(255, 255, 255));
         addPatron.add(ageGroupButton);
         ageGroupButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         ageGroupButton.setText("Age Group");
@@ -552,6 +767,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        dobButton.setBackground(new java.awt.Color(255, 255, 255));
         addPatron.add(dobButton);
         dobButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         dobButton.setText("DOB");
@@ -580,6 +796,7 @@ public class LoansGUI extends javax.swing.JFrame {
         patronPicked.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         patronPicked.setText("Your patron is _____. To pick a different patron search and select again.");
 
+        titleButton.setBackground(new java.awt.Color(255, 255, 255));
         addMaterial.add(titleButton);
         titleButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         titleButton.setText("Title");
@@ -589,6 +806,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        authorButton.setBackground(new java.awt.Color(255, 255, 255));
         addMaterial.add(authorButton);
         authorButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         authorButton.setText("Author");
@@ -598,6 +816,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        countryButton.setBackground(new java.awt.Color(255, 255, 255));
         addMaterial.add(countryButton);
         countryButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         countryButton.setText("Country");
@@ -607,6 +826,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        publicationButton.setBackground(new java.awt.Color(255, 255, 255));
         addMaterial.add(publicationButton);
         publicationButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         publicationButton.setText("Publication Date");
@@ -616,6 +836,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        genreButton.setBackground(new java.awt.Color(255, 255, 255));
         addMaterial.add(genreButton);
         genreButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         genreButton.setText("Genre");
@@ -625,6 +846,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        booksButton.setBackground(new java.awt.Color(255, 255, 255));
         booksMovies.add(booksButton);
         booksButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         booksButton.setText("Books");
@@ -634,6 +856,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
+        moviesButton.setBackground(new java.awt.Color(255, 255, 255));
         booksMovies.add(moviesButton);
         moviesButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         moviesButton.setText("Movies");
@@ -650,6 +873,11 @@ public class LoansGUI extends javax.swing.JFrame {
         jLabel11.setText("Material Search");
 
         materialsSearchField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        materialsSearchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                materialsSearchFieldMouseClicked(evt);
+            }
+        });
 
         searchMaterials.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         searchMaterials.setText("GO");
@@ -751,7 +979,7 @@ public class LoansGUI extends javax.swing.JFrame {
             .addGroup(addLoansLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(addLoansLayout.createSequentialGroup()
                         .addGroup(addLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -807,10 +1035,7 @@ public class LoansGUI extends javax.swing.JFrame {
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(addLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(preview)
-                                .addComponent(loanInfo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(addLoansLayout.createSequentialGroup()
-                        .addGroup(addLoansLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(loanInfo))
                             .addGroup(addLoansLayout.createSequentialGroup()
                                 .addGap(309, 309, 309)
                                 .addComponent(jButton1))
@@ -818,7 +1043,7 @@ public class LoansGUI extends javax.swing.JFrame {
                                 .addGap(212, 212, 212)
                                 .addComponent(jLabel18))
                             .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 106, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         addLoansLayout.setVerticalGroup(
@@ -885,7 +1110,7 @@ public class LoansGUI extends javax.swing.JFrame {
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Loans Menu");
@@ -946,9 +1171,7 @@ public class LoansGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(addLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+            .addComponent(addLoans, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(searchMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -965,15 +1188,13 @@ public class LoansGUI extends javax.swing.JFrame {
                     .addGap(0, 27, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 29, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(editRemoveLoans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 29, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(addLoans, 712, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addComponent(addLoans, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(searchMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -983,17 +1204,17 @@ public class LoansGUI extends javax.swing.JFrame {
                     .addContainerGap()))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 14, Short.MAX_VALUE)
+                    .addGap(0, 25, Short.MAX_VALUE)
                     .addComponent(viewLoans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 15, Short.MAX_VALUE)))
+                    .addGap(0, 26, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 13, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(editRemoveLoans, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 13, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        pack();
+        setBounds(0, 0, 838, 801);
     }// </editor-fold>//GEN-END:initComponents
 
     private void patronSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patronSearchFieldActionPerformed
@@ -1045,7 +1266,8 @@ public class LoansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_removeLActionPerformed
 
     private void editLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editLActionPerformed
-         try {
+        try {
+            // TODO add your handling code here:
             editLoanMenu();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -1163,23 +1385,55 @@ public class LoansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_previewActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        try {
-            // TODO add your handling code here:
-            addLoans();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
+        if(employeeNameR.getText().isEmpty() || employeeIdR.getText().isEmpty()){
+            new error().setVisible(true);
+            
         }
         
-        clearAdd();
-        
-        if(loan == 0){
-            System.out.println("sorry");
+        else{
+            try {
+                // TODO add your handling code here:
+                addLoans();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            clearAdd();
+
+            if(loan == 0){
+                System.out.println("sorry");
+            }
+
+            else if(loan != 0){
+                loanMenu();
+            }
         }
+            
+            
+            
+        dm.clear();
+        dm2.clear();
+        patronSearchField.setText("");
+        materialsSearchField.setText("");
+        employeeNameR.setText("");
+        employeeIdR.setText("");
         
-        else if(loan != 0){
-            loanMenu();
-        }
+        namesButton.setSelected(false);
+        agesButton.setSelected(false);
+        ageGroupButton.setSelected(false);
+        dobButton.setSelected(false);
+        
+        titleButton.setSelected(false);
+        authorButton.setSelected(false);
+        countryButton.setSelected(false);
+        publicationButton.setSelected(false);
+        genreButton.setSelected(false);
+        
+        booksButton.setSelected(false);
+        moviesButton.setSelected(false);
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1189,13 +1443,21 @@ public class LoansGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        removeLoanMenu();
+        try {
+            // TODO add your handling code here:
+            removeLoanMenu();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        editLoanMenu();
+        try {
+            // TODO add your handling code here:
+            editLoanMenu();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1270,30 +1532,75 @@ public class LoansGUI extends javax.swing.JFrame {
         
         if(editRemove == 1){
             //remove
-            removeMaterialWindow removeW;
+            
             try {
-                removeW = new removeMaterialWindow(materialName, materialType, materialFile, numb);
-                removeW.removeMwindow(materialName, materialType, materialFile, numb);
+                removeLoanWindow removeW = new removeLoanWindow(numb);
+                removeW.removeLwindow(numb);
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(NewGUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(patronGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
-        else if(editRemove == 0){
+        if(editRemove == 0){
             
-            if(cValue == 0 || cValue == 5 || cValue == 6){
-                //System.out.println("error");
-                //NEED TO MAKE ERROR WINDOW
-                //Need to add genre change
+            //materialsEdit
+            if(cValue == 1 || cValue == 2 || cValue == 3){
+                editLoansMWindow editM = new editLoansMWindow(selection, numb);
+                editM.editMwindow(selection, numb);
             }
 
-            else if(cValue == 1){
-                editLoansWindow editL = new editMaterialWindow(cValue, selection, numb);
-                editL.editLwindow(cValue, selection, numb);
+            else if(cValue == 4 || cValue == 5 || cValue == 6){
+                editLoansWindow editL = new editLoansWindow(selection, numb);
+                editL.editLwindow(selection, numb);
             }
+            
+            //due date and return
+            else if(cValue == 7 || cValue == 8){
+                selection = (String) tb1Model.getValueAt(editTable.getSelectedRow(), 8);
+                editDatesWindow editD = new editDatesWindow(numb, selection);
+                editD.editLwindow(numb, selection);
+            }
+            
+            //employee info if time allows
+            else if(cValue == 9 || cValue == 10){
+                
+            }
+            
         }
         
     }//GEN-LAST:event_editTableMouseClicked
+
+    private void patronSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_patronSearchFieldMouseClicked
+        // TODO add your handling code here:
+        dm.clear();
+    }//GEN-LAST:event_patronSearchFieldMouseClicked
+
+    private void materialsSearchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_materialsSearchFieldMouseClicked
+        // TODO add your handling code here:
+        dm2.clear();
+    }//GEN-LAST:event_materialsSearchFieldMouseClicked
+
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchFieldActionPerformed
+
+    private void searchFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMouseClicked
+        // TODO add your handling code here:
+        sm.clear();
+    }//GEN-LAST:event_searchFieldMouseClicked
+
+    private void refreshLoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshLoansActionPerformed
+
+        try {
+            // TODO add your handling code here:
+            fileArr();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LoansGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        model = new DefaultTableModel(table, columns);
+        editTable.setModel(model);
+    }//GEN-LAST:event_refreshLoansActionPerformed
 
     public void fileArr() throws FileNotFoundException{
         File viewFile = new File("Loans.txt");
@@ -1367,20 +1674,7 @@ public class LoansGUI extends javax.swing.JFrame {
         File inputFile = new File("Loans.txt");
         Scanner in = new Scanner(inputFile);
         
-        int value = 1000; 
         
-        
-        materialArr = new String[value];
-        mDateArr = new String[value];
-        materialIdArr = new String[value];
-        patronArr = new String[value];
-        dobArr = new String[value]; 
-        patronidArr = new String[value];
-        indateArr = new String[value];
-        arrLine = new String[10];
-        outdateArr = new String[value];
-        employeeArr = new String[value];
-        employeeidArr = new String[value];
         
         
         while(in.hasNextLine()){
@@ -1642,6 +1936,7 @@ public class LoansGUI extends javax.swing.JFrame {
                 }  
             }
     }
+    
     public void clearAdd(){
         loanInfo.setText("");
         employeeNameR.setText("");
@@ -1697,6 +1992,7 @@ public class LoansGUI extends javax.swing.JFrame {
             loanlength = 3;
         }
     }
+    
     public void searchMaterials() throws FileNotFoundException{
         int rnum = 0;
         
@@ -1983,7 +2279,7 @@ public class LoansGUI extends javax.swing.JFrame {
     
     public void addLoans() throws FileNotFoundException{
         //print info to mediaFile
-        File inputMediaFile = new File(mediaFile);
+        FileInputStream inputMediaFile = new FileInputStream(mediaFile);
         Scanner inMedia = new Scanner(inputMediaFile);
         PrintWriter outMedia = new PrintWriter("temp.txt");
         
@@ -2026,13 +2322,15 @@ public class LoansGUI extends javax.swing.JFrame {
             }
             
             //line is printed
-            outMedia.println(arrLine2[0] + "~" + arrLine2[1] + " ~" + arrLine2[2]);
+            outMedia.println(arrLine2[0] + "~" + arrLine2[1] + "~" + arrLine2[2]);
         }
         
         //if after all copies have been checked there are no avalible copies
         if(loan == 0){
             //print sorry
             System.out.println("Sorry, no copies of " + materialName + " were avalible.\n");
+            copiesError c = new copiesError(materialName);
+            c.error(materialName);
         }
         //close files
         inMedia.close();
@@ -2051,33 +2349,37 @@ public class LoansGUI extends javax.swing.JFrame {
             while(inPatron.hasNextLine()){
                 outPatron.println(inPatron.nextLine());
             }
-            outPatron.println("Checkout date ~ " + currentDate + " ~ Material name ~ " + materialName + " ~ dueDate ~ " + dueDate);
+            outPatron.println("Checkout date~" + currentDate + "~Material name~" + materialName + "~ dueDate ~" + dueDate);
 
             inPatron.close();
             outPatron.close();
             Files patrons = new Files("temp.txt",patronFile);
             patrons.fileReplace();
-        }
-        
-        
-        //print info to Loans.txt
-        File inputL = new File("Loans.txt");
-        Scanner inL = new Scanner(inputL);
-        PrintWriter outL = new PrintWriter("temp.txt");
-        
-        while(inL.hasNextLine()){
+            
+            
+            //print info to Loans.txt
+            File inputL = new File("Loans.txt");
+            Scanner inL = new Scanner(inputL);
+            PrintWriter outL = new PrintWriter("temp.txt");
+            while(inL.hasNextLine()){
             outL.println(inL.nextLine());
+            }
+            outL.println(materialName + "~" + materialDate + "~" + materialId + "~" + patronname + "~" + patronDOB + "~" + patronId + "~" + currentDate + "~" + dueDate + "~" + employeeName + "~" + employeeId);
+
+            inL.close();
+            outL.close();
+            Files loans = new Files("temp.txt","Loans.txt");
+            loans.fileReplace();
         }
-        outL.println(materialName + " ~ " + materialDate + " ~ " + materialId + " ~ " + patronname + " ~ " + patronDOB + " ~ " + patronId + " ~ " + currentDate + " ~ " + dueDate + " ~ " + employeeName + " ~ " + employeeId);
         
-        inL.close();
-        outL.close();
-        Files loans = new Files("temp.txt","Loans.txt");
-        loans.fileReplace();
+        
+        
+        
+        
     }
     
     public void searchPatrons() throws FileNotFoundException{
-         int rnum = 0;
+        int rnum = 0;
         
         File inputFile = new File("Patrons.txt");
         Scanner in = new Scanner(inputFile);
@@ -2330,6 +2632,7 @@ public class LoansGUI extends javax.swing.JFrame {
         editTable.setModel(model);
         
         editRemoveTitle.setText("Edit Loans");
+        editRinstruct.setText("Click on the part of the loan you wish to edit. To return, click on the date. ");
         
         editRemove = 0;
         addLoans.setVisible(false);
@@ -2347,6 +2650,7 @@ public class LoansGUI extends javax.swing.JFrame {
         editTable.setModel(model);
         
         editRemoveTitle.setText("Remove Loans");
+        editRinstruct.setText("Click on the loan you wish to remove. ");
         
         editRemove = 1;
         
@@ -2389,7 +2693,7 @@ public class LoansGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void loansRun() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -2443,6 +2747,7 @@ public class LoansGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem editL;
     private javax.swing.JPanel editRemoveLoans;
     private javax.swing.JLabel editRemoveTitle;
+    private javax.swing.JLabel editRinstruct;
     private javax.swing.JTable editTable;
     private javax.swing.JTextField employeeIdR;
     private javax.swing.JTextField employeeNameR;
@@ -2456,11 +2761,11 @@ public class LoansGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -2498,6 +2803,7 @@ public class LoansGUI extends javax.swing.JFrame {
     private javax.swing.JTextField patronSearchField;
     private javax.swing.JButton preview;
     private javax.swing.JRadioButton publicationButton;
+    private javax.swing.JButton refreshLoans;
     private javax.swing.JMenuItem removeL;
     private javax.swing.ButtonGroup searchButtonGroup;
     private javax.swing.JTextField searchField;

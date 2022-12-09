@@ -21,7 +21,7 @@ public class removeMaterialWindow extends javax.swing.JFrame {
    
     private String materialFile;
     
-    public String material;
+    private String material;
     
     /**
      * Creates new form editMaterialWindow

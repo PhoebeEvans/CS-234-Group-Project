@@ -252,12 +252,13 @@ public class editMaterialWindow extends javax.swing.JFrame {
                 String temp = iD + ".txt";
                 iD = temp;
 
+                System.out.println("Old " + oldFilename + " new " + iD);
                 //Creates file with fileCreate
-                Files editF = new Files(iD,oldFilename);
+                Files editF = new Files(oldFilename,iD);
                 if(oldFilename != iD){
                     editF.fileCreate();
 
-                    //editF.fileReplace();
+                    editF.fileReplace();
                 }
                 count++;
             }

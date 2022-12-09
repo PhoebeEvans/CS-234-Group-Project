@@ -31,19 +31,19 @@ public class ProgramAddFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        addButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         speakerField = new javax.swing.JTextField();
         locationField = new javax.swing.JTextField();
         dateField = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        addButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,25 +71,26 @@ public class ProgramAddFrame extends javax.swing.JFrame {
 
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel1.setText("Name of Program:");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 127, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel2.setText("Speaker:");
-        mainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 196, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel3.setText("Location");
-        mainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 259, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jLabel4.setText("Date");
-        mainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 328, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel5.setText("Add a Program");
-        mainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, 30));
+        mainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, 30));
+
+        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        addButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 39, 96, 38));
+
+        mainPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 590, 340, 120));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\jacqu\\Downloads\\programs.png")); // NOI18N
+        mainPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,39 +117,25 @@ public class ProgramAddFrame extends javax.swing.JFrame {
         });
         jPanel4.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 90, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel1.setText("Location of event");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, 50));
 
-        mainPanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 69, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel7.setText("Name of Program:");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 50));
 
-        jPanel5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel8.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel8.setText("Name of Speaker:");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, 50));
 
-        addButton.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
-            }
-        });
-        jPanel5.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 39, 96, 38));
+        jLabel9.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jLabel9.setText("Date of event");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, 50));
 
-        mainPanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 480, 340, 120));
+        mainPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 590, 340));
 
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 630));
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -205,6 +192,8 @@ public class ProgramAddFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -218,13 +207,13 @@ public class ProgramAddFrame extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JTextField dateField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField locationField;

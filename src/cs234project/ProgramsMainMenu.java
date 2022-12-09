@@ -33,16 +33,19 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
         exitBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setForeground(new java.awt.Color(255, 255, 255));
         MainPanel.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 24)); // NOI18N
         jLabel1.setText("Programs Menu");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
+        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
 
         searchBtn.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         searchBtn.setText("Search/Edit Programs");
@@ -51,7 +54,7 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
-        MainPanel.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 190, 60));
+        MainPanel.add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 220, 60));
 
         exitBtn.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         exitBtn.setText("Return to Main Menu");
@@ -60,7 +63,7 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
                 exitBtnActionPerformed(evt);
             }
         });
-        MainPanel.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 190, 70));
+        MainPanel.add(exitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, 220, 60));
 
         addBtn.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         addBtn.setText("Add");
@@ -69,7 +72,7 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
                 addBtnActionPerformed(evt);
             }
         });
-        MainPanel.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 190, 60));
+        MainPanel.add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 220, 60));
 
         jButton1.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jButton1.setText("View Catalog");
@@ -78,7 +81,10 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 190, 70));
+        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 220, 70));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/Screenshot 2022-12-08 140054.png"))); // NOI18N
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         getContentPane().add(MainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 840));
 
@@ -135,6 +141,7 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ProgramsMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -150,6 +157,7 @@ public class ProgramsMainMenu extends javax.swing.JFrame {
     private javax.swing.JButton exitBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }
