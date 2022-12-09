@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package oldLibrary;
+package cs234project;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -240,10 +240,10 @@ public class materialsGUI extends javax.swing.JFrame {
         });
 
         booksPic.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        booksPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/books.jpg"))); // NOI18N
+        booksPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/books.jpg"))); // NOI18N
 
         moviesPic.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        moviesPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/movies.jpg"))); // NOI18N
+        moviesPic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/movies.jpg"))); // NOI18N
 
         javax.swing.GroupLayout addMaterialsLayout = new javax.swing.GroupLayout(addMaterials);
         addMaterials.setLayout(addMaterialsLayout);
@@ -598,7 +598,7 @@ public class materialsGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/dextercabin.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
 
         javax.swing.GroupLayout materialsMenuLayout = new javax.swing.GroupLayout(materialsMenu);
         materialsMenu.setLayout(materialsMenuLayout);

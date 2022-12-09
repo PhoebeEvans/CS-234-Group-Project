@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package oldLibrary;
+package cs234project;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -561,7 +561,7 @@ public class LoansGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/dextercabin.gif"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
 
         javax.swing.GroupLayout loansMenuLayout = new javax.swing.GroupLayout(loansMenu);
         loansMenu.setLayout(loansMenuLayout);

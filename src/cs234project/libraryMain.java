@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package oldLibrary;
+package cs234project;
+
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -69,7 +70,7 @@ public class libraryMain extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel1.setText("Leadville Library Menu");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/dextercabin.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/dextercabin.gif"))); // NOI18N
 
         patronsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         patronsButton.setText("Patrons");
@@ -79,7 +80,7 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/patronPic2.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/patronPic2.jpg"))); // NOI18N
 
         moviesButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         moviesButton.setText("Movies");
@@ -97,11 +98,11 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/movies.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/movies.jpg"))); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/books.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/books.jpg"))); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/loans.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/loans.jpg"))); // NOI18N
 
         loansButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         loansButton.setText("Loans");
@@ -119,9 +120,9 @@ public class libraryMain extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/employee.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/employee.jpg"))); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oldLibrary/programs.jpg"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cs234project/programs.jpg"))); // NOI18N
 
         programsButton.setFont(new java.awt.Font("Georgia", 0, 18)); // NOI18N
         programsButton.setText("Programs");

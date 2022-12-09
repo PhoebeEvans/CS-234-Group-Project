@@ -1,0 +1,9 @@
+1 ~ North by Northwest ~ Alfred Hitchcock ~ 1959 ~ USA ~ fiction ~ 3.2.009
+2 ~ Night Train to Munich ~ Carol Reed ~ 1940 ~ USA, UK ~ fiction ~ 3.2.0010
+3 ~ Secret Agent ~ Alfred Hitchcock ~ 1936 ~ UK ~ fiction ~ 3.2.0011
+4 ~ Foreign Correspondent ~ Alfred Hitchcock ~ 1940 ~ USA ~ fiction ~ 3.2.0012
+5 ~ Mr. Smith Goes to Washington ~ Frank Capra ~ 1939 ~ USA ~ fiction ~ 3.2.0013
+7 ~ The 39 Steps ~ Alfred Hitchcock ~ 1935 ~ UK ~ fiction ~ 3.2.0015
+8 ~ Saboteur ~ Alfred Hitchcock ~ 1942 ~ USA ~ fiction ~ 3.2.0016
+8 ~ Ministry of Fear ~ Fritz Lang ~ 1944 ~ USA ~ fiction ~ 3.2.0017
+9~ The High and the Mighty ~ William A. Wellman ~1954~ USA ~ fiction ~ 3.2.0018
