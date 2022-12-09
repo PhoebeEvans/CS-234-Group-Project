@@ -1,2 +1,0 @@
-Checkout date ~ 11/11/2022 ~ Material name ~   Saboteur   ~ dueDate ~ 11/14/2022
-Checkout date ~ 11/11/2022 ~ Material name ~   Foreign Correspondent   ~ dueDate ~ 11/14/2022
