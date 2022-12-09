@@ -1,3 +1,0 @@
-Checkout date ~ 12/7/2022 ~ Material name ~  Colorado's Fourteeners  ~ dueDate ~12/21/2022
-Checkout date ~ 12/7/2022 ~ Material name ~Roof of the Rockies   ~ dueDate ~returned 12/7/2022
-Checkout date ~ 12/7/2022 ~ Material name ~   Roof of the Rockies   ~ dueDate ~ 12/21/2022
