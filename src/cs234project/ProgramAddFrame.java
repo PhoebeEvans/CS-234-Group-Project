@@ -96,10 +96,20 @@ public class ProgramAddFrame extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nameField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jPanel4.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 40, 80, 30));
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
+        jPanel4.add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 160, 40));
 
         speakerField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jPanel4.add(speakerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 110, 80, 30));
+        speakerField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                speakerFieldActionPerformed(evt);
+            }
+        });
+        jPanel4.add(speakerField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 160, 40));
 
         locationField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         locationField.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +117,7 @@ public class ProgramAddFrame extends javax.swing.JFrame {
                 locationFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(locationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 180, 80, 30));
+        jPanel4.add(locationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 160, 40));
 
         dateField.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         dateField.addActionListener(new java.awt.event.ActionListener() {
@@ -115,11 +125,11 @@ public class ProgramAddFrame extends javax.swing.JFrame {
                 dateFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 90, 30));
+        jPanel4.add(dateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 160, 40));
 
         jLabel1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jLabel1.setText("Location of event");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, 50));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, 50));
 
         jLabel7.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jLabel7.setText("Name of Program:");
@@ -164,6 +174,14 @@ public class ProgramAddFrame extends javax.swing.JFrame {
     private void dateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dateFieldActionPerformed
+
+    private void speakerFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_speakerFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_speakerFieldActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
 
     /**
      * @param args the command line arguments
